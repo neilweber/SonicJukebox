@@ -8,7 +8,10 @@
         a:id="@+id/main_list"
         a:layout_width="fill_parent"
         a:layout_height="0dp"
-        a:layout_weight="1" />
+        a:layout_weight="1"
+        a:divider="@null"
+        a:dividerHeight="0sp"
+        />
 
     <View
         a:id="@+id/main_dummy"

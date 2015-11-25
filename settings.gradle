@@ -1,4 +1,4 @@
 include ':library'
 include ':menudrawer'
 include ':pulltorefresh'
-include ':ultrasonic'
+include ':sonicjukebox'

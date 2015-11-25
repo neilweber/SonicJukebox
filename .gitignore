@@ -165,9 +165,15 @@ pip-log.txt
 out/
 proguard_logs/
 
-# IDEA
-.idea/workspace.xml
-.idea/misc.xml
-.idea/tasks.xml
-.idea/*.iws
-.idea/dictionaries/*.xml
+# Android Studio
+.idea/
+.gradle
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.iml
+*.iws
+*.ipr
+*~
+*.swp

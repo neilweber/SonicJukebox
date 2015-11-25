@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:a="http://schemas.android.com/apk/res/android"
+        a:orientation="vertical"
+        a:layout_width="fill_parent"
+        a:layout_height="fill_parent"
+        a:layout_weight="1">
+
+    <TextView
+            a:id="@+id/download_empty"
+            a:text="@string/download.empty"
+            a:layout_width="fill_parent"
+            a:layout_height="wrap_content"
+            a:padding="10dip"/>
+
+    <com.mobeta.android.dslv.DragSortListView
+            xmlns:dslv="http://schemas.android.com/apk/res/com.budrotech.jukebox"
+            a:id="@+id/download_list"
+            a:layout_width="fill_parent"
+            a:layout_height="0dip"
+            a:layout_weight="1"
+            a:fastScrollEnabled="true"
+        	a:textFilterEnabled="true"
+            dslv:drag_handle_id="@+id/song_drag"
+            dslv:remove_enabled="true"
+            dslv:remove_mode="flingRemove"
+            dslv:fling_handle_id="@+id/song_drag"
+            dslv:drag_start_mode="onMove"
+            dslv:float_background_color="?attr/color_background"
+            dslv:float_alpha="0.7" />
+
+
+</LinearLayout>

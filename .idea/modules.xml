@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UltrasSonic.iml" filepath="$PROJECT_DIR$/UltrasSonic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SonicJukebox.iml" filepath="$PROJECT_DIR$/SonicJukebox.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/menudrawer/menudrawer.iml" filepath="$PROJECT_DIR$/menudrawer/menudrawer.iml" />
       <module fileurl="file://$PROJECT_DIR$/pulltorefresh/pulltorefresh.iml" filepath="$PROJECT_DIR$/pulltorefresh/pulltorefresh.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ultrasonic/ultrasonic.iml" filepath="$PROJECT_DIR$/ultrasonic/ultrasonic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sonicjukebox/sonicjukebox.iml" filepath="$PROJECT_DIR$/sonicjukebox/sonicjukebox.iml" />
     </modules>
   </component>
 </project>

@@ -57,7 +57,6 @@ public final class Constants
 	public static final String INTENT_EXTRA_NAME_RANDOM = "subsonic.random";
 	public static final String INTENT_EXTRA_NAME_GENRE_NAME = "subsonic.genre";
 	public static final String INTENT_EXTRA_NAME_IS_ALBUM = "subsonic.isalbum";
-	public static final String INTENT_EXTRA_NAME_VIDEOS = "subsonic.videos";
 
 	// Notification IDs.
 	public static final int NOTIFICATION_ID_PLAYING = 100;

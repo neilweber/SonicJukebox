@@ -102,8 +102,6 @@ public class MainActivity extends JukeboxTabActivity
 		final View musicTitle = buttons.findViewById(R.id.main_music);
 		final View artistsButton = buttons.findViewById(R.id.main_artists_button);
 		final View albumsButton = buttons.findViewById(R.id.main_albums_button);
-		final View genresButton = buttons.findViewById(R.id.main_genres_button);
-		final View videosTitle = buttons.findViewById(R.id.main_videos_title);
 		final View songsTitle = buttons.findViewById(R.id.main_songs);
 		final View randomSongsButton = buttons.findViewById(R.id.main_songs_button);
 		final View songsStarredButton = buttons.findViewById(R.id.main_songs_starred);
@@ -112,11 +110,7 @@ public class MainActivity extends JukeboxTabActivity
 		final View albumsRandomButton = buttons.findViewById(R.id.main_albums_random);
 		final View albumsHighestButton = buttons.findViewById(R.id.main_albums_highest);
 		final View albumsStarredButton = buttons.findViewById(R.id.main_albums_starred);
-		final View albumsRecentButton = buttons.findViewById(R.id.main_albums_recent);
-		final View albumsFrequentButton = buttons.findViewById(R.id.main_albums_frequent);
-		final View albumsAlphaByNameButton = buttons.findViewById(R.id.main_albums_alphaByName);
 		final View albumsAlphaByArtistButton = buttons.findViewById(R.id.main_albums_alphaByArtist);
-		final View videosButton = buttons.findViewById(R.id.main_videos);
 		final View dummyView = findViewById(R.id.main_dummy);
 
 		boolean shouldShowDialog = false;
@@ -148,7 +142,7 @@ public class MainActivity extends JukeboxTabActivity
 		if (!Util.isOffline(this))
 		{
 			adapter.addView(musicTitle, false);
-			adapter.addViews(asList(artistsButton, albumsButton, genresButton), true);
+			adapter.addViews(asList(artistsButton, albumsButton), true);
 			adapter.addView(songsTitle, false);
 			adapter.addViews(asList(randomSongsButton, songsStarredButton), true);
 			adapter.addView(albumsTitle, false);
@@ -156,16 +150,13 @@ public class MainActivity extends JukeboxTabActivity
 			if (Util.getShouldUseId3Tags(MainActivity.this))
 			{
 				shouldUseId3 = true;
-				adapter.addViews(asList(albumsNewestButton, albumsRecentButton, albumsFrequentButton, albumsRandomButton, albumsStarredButton, albumsAlphaByNameButton, albumsAlphaByArtistButton), true);
+				adapter.addViews(asList(albumsRandomButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton), true);
 			}
 			else
 			{
 				shouldUseId3 = false;
-				adapter.addViews(asList(albumsNewestButton, albumsRecentButton, albumsFrequentButton, albumsHighestButton, albumsRandomButton, albumsStarredButton, albumsAlphaByNameButton, albumsAlphaByArtistButton), true);
+				adapter.addViews(asList(albumsRandomButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton, albumsHighestButton), true);
 			}
-
-			adapter.addView(videosTitle, false);
-			adapter.addViews(Collections.singletonList(videosButton), true);
 		}
 
 		list.setAdapter(adapter);
@@ -192,49 +183,26 @@ public class MainActivity extends JukeboxTabActivity
 				{
 					showAlbumList("highest", R.string.main_albums_highest);
 				}
-				else if (view == albumsRecentButton)
-				{
-					showAlbumList("recent", R.string.main_albums_recent);
-				}
-				else if (view == albumsFrequentButton)
-				{
-					showAlbumList("frequent", R.string.main_albums_frequent);
-				}
 				else if (view == albumsStarredButton)
 				{
 					showAlbumList(Constants.STARRED, R.string.main_albums_starred);
-				}
-				else if (view == albumsAlphaByNameButton)
-				{
-					showAlbumList(Constants.ALPHABETICAL_BY_NAME, R.string.main_albums_alphaByName);
 				}
 				else if (view == albumsAlphaByArtistButton)
 				{
 					showAlbumList("alphabeticalByArtist", R.string.main_albums_alphaByArtist);
 				}
-				else if (view == songsStarredButton)
-				{
+				else if (view == songsStarredButton) {
 					showStarredSongs();
 				}
 				else if (view == artistsButton)
 				{
 					showArtists();
 				}
-				else if (view == albumsButton)
-				{
+				else if (view == albumsButton) {
 					showAlbumList(Constants.ALPHABETICAL_BY_NAME, R.string.main_albums_title);
 				}
-				else if (view == randomSongsButton)
-				{
+				else if (view == randomSongsButton) {
 					showRandomSongs();
-				}
-				else if (view == genresButton)
-				{
-					showGenres();
-				}
-				else if (view == videosButton)
-				{
-					showVideos();
 				}
 			}
 		});
@@ -518,20 +486,6 @@ public class MainActivity extends JukeboxTabActivity
 		final Intent intent = new Intent(this, SelectArtistActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_TITLE, getResources().getString(R.string.main_artists_title));
-		startActivityForResultWithoutTransition(this, intent);
-	}
-
-	private void showGenres()
-	{
-		final Intent intent = new Intent(this, SelectGenreActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivityForResultWithoutTransition(this, intent);
-	}
-
-	private void showVideos()
-	{
-		final Intent intent = new Intent(this, SelectAlbumActivity.class);
-		intent.putExtra(Constants.INTENT_EXTRA_NAME_VIDEOS, 1);
 		startActivityForResultWithoutTransition(this, intent);
 	}
 }

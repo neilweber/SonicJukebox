@@ -235,7 +235,6 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 		String genreName = getIntent().getStringExtra(Constants.INTENT_EXTRA_NAME_GENRE_NAME);
 		int albumListTitle = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_TITLE, 0);
 		int getStarredTracks = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_STARRED, 0);
-		int getVideos = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_VIDEOS, 0);
 		int getRandomTracks = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_RANDOM, 0);
 		int albumListSize = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, 0);
 		int albumListOffset = getIntent().getIntExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_OFFSET, 0);
@@ -262,10 +261,6 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 		else if (getStarredTracks != 0)
 		{
 			getStarred();
-		}
-		else if (getVideos != 0)
-		{
-			getVideos();
 		}
 		else if (getRandomTracks != 0)
 		{
@@ -753,23 +748,6 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			protected MusicDirectory load(MusicService service) throws Exception
 			{
 				return Util.getShouldUseId3Tags(SelectAlbumActivity.this) ? Util.getSongsFromSearchResult(service.getStarred2(SelectAlbumActivity.this, this)) : Util.getSongsFromSearchResult(service.getStarred(SelectAlbumActivity.this, this));
-			}
-		}.execute();
-	}
-
-	private void getVideos()
-	{
-		showHeader = false;
-
-		setActionBarSubtitle(R.string.main_videos);
-
-		new LoadTask()
-		{
-			@Override
-			protected MusicDirectory load(MusicService service) throws Exception
-			{
-				boolean refresh = getIntent().getBooleanExtra(Constants.INTENT_EXTRA_NAME_REFRESH, false);
-				return service.getVideos(refresh, SelectAlbumActivity.this, this);
 			}
 		}.execute();
 	}

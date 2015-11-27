@@ -1554,23 +1554,6 @@ public class RESTMusicService implements MusicService
 	}
 
 	@Override
-	public MusicDirectory getVideos(boolean refresh, Context context, ProgressListener progressListener) throws Exception
-	{
-		checkServerVersion(context, "1.8", "Videos not supported.");
-
-		Reader reader = getReader(context, progressListener, "getVideos", null);
-
-		try
-		{
-			return new MusicDirectoryParser(context).parse("", reader, progressListener, false);
-		}
-		finally
-		{
-			Util.close(reader);
-		}
-	}
-
-	@Override
 	public List<Share> createShare(List<String> ids, String description, Long expires, Context context, ProgressListener progressListener) throws Exception
 	{
 		List<String> parameterNames = new LinkedList<String>();

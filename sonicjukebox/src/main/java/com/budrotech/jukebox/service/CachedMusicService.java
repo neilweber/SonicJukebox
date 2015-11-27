@@ -36,7 +36,6 @@ import com.budrotech.jukebox.domain.Share;
 import com.budrotech.jukebox.domain.UserInfo;
 import com.budrotech.jukebox.domain.Version;
 import com.budrotech.jukebox.util.CancellableTask;
-import com.budrotech.jukebox.util.Constants;
 import com.budrotech.jukebox.util.LRUCache;
 import com.budrotech.jukebox.util.ProgressListener;
 import com.budrotech.jukebox.util.TimeLimitedCache;
@@ -468,25 +467,6 @@ public class CachedMusicService implements MusicService
 	public void createBookmark(String id, int position, Context context, ProgressListener progressListener) throws Exception
 	{
 		musicService.createBookmark(id, position, context, progressListener);
-	}
-
-	@Override
-	public MusicDirectory getVideos(boolean refresh, Context context, ProgressListener progressListener) throws Exception
-	{
-		checkSettingsChanged(context);
-		TimeLimitedCache<MusicDirectory> cache = refresh ? null : cachedMusicDirectories.get(Constants.INTENT_EXTRA_NAME_VIDEOS);
-
-		MusicDirectory dir = cache == null ? null : cache.get();
-
-		if (dir == null)
-		{
-			dir = musicService.getVideos(refresh, context, progressListener);
-			cache = new TimeLimitedCache<MusicDirectory>(Util.getDirectoryCacheTime(context), TimeUnit.SECONDS);
-			cache.set(dir);
-			cachedMusicDirectories.put(Constants.INTENT_EXTRA_NAME_VIDEOS, cache);
-		}
-
-		return dir;
 	}
 
 	@Override

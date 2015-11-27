@@ -9,12 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.JukeboxTabActivity;
 import com.budrotech.jukebox.domain.ChatMessage;
 import com.budrotech.jukebox.util.ImageLoader;
 import com.budrotech.jukebox.util.Util;
-
-import org.moire.jukebox.R;
 
 import java.text.DateFormat;
 import java.util.Date;

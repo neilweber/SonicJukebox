@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Artist;
 import com.budrotech.jukebox.domain.Indexes;
 import com.budrotech.jukebox.domain.MusicFolder;
@@ -45,8 +46,6 @@ import com.budrotech.jukebox.view.ArtistAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.List;

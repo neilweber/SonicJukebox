@@ -50,6 +50,7 @@ import android.view.KeyEvent;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.DownloadActivity;
 import com.budrotech.jukebox.activity.MainActivity;
 import com.budrotech.jukebox.activity.SettingsActivity;
@@ -65,7 +66,6 @@ import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
 
 import org.apache.http.HttpEntity;
-import org.moire.jukebox.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -104,8 +104,8 @@ public class Util extends DownloadActivity
 	private static DecimalFormat KILO_BYTE_LOCALIZED_FORMAT;
 	private static DecimalFormat BYTE_LOCALIZED_FORMAT;
 
-	public static final String EVENT_META_CHANGED = "org.moire.jukebox.EVENT_META_CHANGED";
-	public static final String EVENT_PLAYSTATE_CHANGED = "org.moire.jukebox.EVENT_PLAYSTATE_CHANGED";
+	public static final String EVENT_META_CHANGED = "com.budrotech.jukebox.EVENT_META_CHANGED";
+	public static final String EVENT_PLAYSTATE_CHANGED = "com.budrotech.jukebox.EVENT_PLAYSTATE_CHANGED";
 
 	public static final String CM_AVRCP_PLAYSTATE_CHANGED = "com.android.music.playstatechanged";
 	public static final String CM_AVRCP_METADATA_CHANGED = "com.android.music.metachanged";

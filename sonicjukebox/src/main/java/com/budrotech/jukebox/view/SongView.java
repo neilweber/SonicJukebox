@@ -29,6 +29,7 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.DownloadFile;
 import com.budrotech.jukebox.service.DownloadService;
@@ -37,8 +38,6 @@ import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
 import com.budrotech.jukebox.util.Util;
 import com.budrotech.jukebox.util.VideoPlayerType;
-
-import org.moire.jukebox.R;
 
 import java.io.File;
 

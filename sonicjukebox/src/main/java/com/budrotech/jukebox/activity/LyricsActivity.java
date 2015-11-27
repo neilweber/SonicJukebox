@@ -23,14 +23,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Lyrics;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
 import com.budrotech.jukebox.util.BackgroundTask;
 import com.budrotech.jukebox.util.Constants;
 import com.budrotech.jukebox.util.TabActivityBackgroundTask;
-
-import org.moire.jukebox.R;
 
 /**
  * Displays song lyrics.

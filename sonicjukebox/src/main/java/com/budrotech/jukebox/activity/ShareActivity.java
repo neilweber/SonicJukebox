@@ -41,6 +41,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Share;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
@@ -57,8 +58,6 @@ import com.budrotech.jukebox.view.ShareAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
-import org.moire.jukebox.R;
 
 import java.util.List;
 

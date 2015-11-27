@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import org.moire.jukebox.R;
+import com.budrotech.jukebox.R;
 
 /**
  * Created by Joshua Bahnsen on 12/22/13.

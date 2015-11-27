@@ -25,6 +25,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Artist;
 import com.budrotech.jukebox.domain.Bookmark;
 import com.budrotech.jukebox.domain.ChatMessage;
@@ -94,7 +95,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
-import org.moire.jukebox.R;
 
 import java.io.BufferedWriter;
 import java.io.File;

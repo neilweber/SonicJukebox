@@ -24,10 +24,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.MusicServiceFactory;
-
-import org.moire.jukebox.R;
 
 /**
  * @author Sindre Mehus

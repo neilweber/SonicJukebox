@@ -33,14 +33,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
 import com.budrotech.jukebox.util.Constants;
 import com.budrotech.jukebox.util.FileUtil;
 import com.budrotech.jukebox.util.MergeAdapter;
 import com.budrotech.jukebox.util.Util;
-
-import org.moire.jukebox.R;
 
 import java.util.Collections;
 

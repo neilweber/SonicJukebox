@@ -5,7 +5,7 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 
-import org.moire.jukebox.R;
+import com.budrotech.jukebox.R;
 
 import java.util.regex.Pattern;
 

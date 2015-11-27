@@ -22,9 +22,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Playlist;
-
-import org.moire.jukebox.R;
 
 /**
  * Used to display playlists in a {@code ListView}.

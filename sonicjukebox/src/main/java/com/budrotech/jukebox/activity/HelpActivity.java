@@ -32,13 +32,12 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.util.Constants;
 import com.budrotech.jukebox.util.Util;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
-
-import org.moire.jukebox.R;
 
 /**
  * An HTML-based help screen with Back and Done buttons at the bottom.
@@ -51,9 +50,9 @@ public final class HelpActivity extends ResultActivity implements OnClickListene
 	private ImageView backButton;
 	private ImageView forwardButton;
 
-	private static final String STATE_MENUDRAWER = "org.moire.jukebox.menuDrawer";
-	private static final String STATE_ACTIVE_VIEW_ID = "org.moire.jukebox.activeViewId";
-	private static final String STATE_ACTIVE_POSITION = "org.moire.jukebox.activePosition";
+	private static final String STATE_MENUDRAWER = "com.budrotech.jukebox.menuDrawer";
+	private static final String STATE_ACTIVE_VIEW_ID = "com.budrotech.jukebox.activeViewId";
+	private static final String STATE_ACTIVE_POSITION = "com.budrotech.jukebox.activePosition";
 
 	public MenuDrawer menuDrawer;
 	private int activePosition = 1;

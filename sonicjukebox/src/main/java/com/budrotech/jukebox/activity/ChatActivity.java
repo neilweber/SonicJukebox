@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.ChatMessage;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
@@ -24,8 +25,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

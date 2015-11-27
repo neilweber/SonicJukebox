@@ -13,14 +13,13 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RemoteViews;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.DownloadActivity;
 import com.budrotech.jukebox.activity.MainActivity;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
 import com.budrotech.jukebox.util.FileUtil;
-
-import org.moire.jukebox.R;
 
 public class SonicJukeboxAppWidgetProvider extends AppWidgetProvider
 {

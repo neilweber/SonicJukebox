@@ -31,6 +31,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Artist;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.SearchCriteria;
@@ -45,8 +46,6 @@ import com.budrotech.jukebox.util.TabActivityBackgroundTask;
 import com.budrotech.jukebox.util.Util;
 import com.budrotech.jukebox.view.ArtistAdapter;
 import com.budrotech.jukebox.view.EntryAdapter;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

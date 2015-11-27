@@ -20,11 +20,11 @@ package com.budrotech.jukebox.service.parser;
 
 import android.content.Context;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Playlist;
 import com.budrotech.jukebox.util.ProgressListener;
 import com.budrotech.jukebox.view.PlaylistAdapter;
 
-import org.moire.jukebox.R;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.Reader;

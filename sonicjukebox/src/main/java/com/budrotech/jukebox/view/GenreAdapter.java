@@ -22,9 +22,8 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.SectionIndexer;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Genre;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.Collection;

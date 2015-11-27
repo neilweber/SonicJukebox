@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.DownloadFile;
 import com.budrotech.jukebox.service.MusicService;
@@ -39,8 +40,6 @@ import com.budrotech.jukebox.view.EntryAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.List;

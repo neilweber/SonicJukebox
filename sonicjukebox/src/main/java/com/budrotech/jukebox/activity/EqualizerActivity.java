@@ -30,11 +30,10 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.audiofx.EqualizerController;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
-
-import org.moire.jukebox.R;
 
 import java.util.HashMap;
 import java.util.Map;

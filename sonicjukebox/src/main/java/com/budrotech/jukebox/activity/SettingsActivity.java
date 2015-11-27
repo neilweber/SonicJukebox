@@ -39,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.provider.SearchSuggestionProvider;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
@@ -54,8 +55,6 @@ import com.budrotech.jukebox.util.Util;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
-
-import org.moire.jukebox.R;
 
 import java.io.File;
 import java.net.URL;
@@ -97,9 +96,9 @@ public class SettingsActivity extends PreferenceResultActivity implements Shared
 	private int maxServerCount = 10;
 	private int minServerCount;
 
-	private static final String STATE_MENUDRAWER = "org.moire.jukebox.menuDrawer";
-	private static final String STATE_ACTIVE_VIEW_ID = "org.moire.jukebox.activeViewId";
-	private static final String STATE_ACTIVE_POSITION = "org.moire.jukebox.activePosition";
+	private static final String STATE_MENUDRAWER = "com.budrotech.jukebox.menuDrawer";
+	private static final String STATE_ACTIVE_VIEW_ID = "com.budrotech.jukebox.activeViewId";
+	private static final String STATE_ACTIVE_POSITION = "com.budrotech.jukebox.activePosition";
 
 	public MenuDrawer menuDrawer;
 	private int activePosition = 1;

@@ -40,6 +40,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.DownloadActivity;
 import com.budrotech.jukebox.activity.JukeboxTabActivity;
 import com.budrotech.jukebox.audiofx.EqualizerController;
@@ -62,8 +63,6 @@ import com.budrotech.jukebox.util.SimpleServiceBinder;
 import com.budrotech.jukebox.util.StreamProxy;
 import com.budrotech.jukebox.util.Util;
 
-import org.moire.jukebox.R;
-
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -79,12 +78,12 @@ public class DownloadServiceImpl extends Service implements DownloadService
 {
 	private static final String TAG = DownloadServiceImpl.class.getSimpleName();
 
-	public static final String CMD_PLAY = "org.moire.jukebox.CMD_PLAY";
-	public static final String CMD_TOGGLEPAUSE = "org.moire.jukebox.CMD_TOGGLEPAUSE";
-	public static final String CMD_PAUSE = "org.moire.jukebox.CMD_PAUSE";
-	public static final String CMD_STOP = "org.moire.jukebox.CMD_STOP";
-	public static final String CMD_PREVIOUS = "org.moire.jukebox.CMD_PREVIOUS";
-	public static final String CMD_NEXT = "org.moire.jukebox.CMD_NEXT";
+	public static final String CMD_PLAY = "com.budrotech.jukebox.CMD_PLAY";
+	public static final String CMD_TOGGLEPAUSE = "com.budrotech.jukebox.CMD_TOGGLEPAUSE";
+	public static final String CMD_PAUSE = "com.budrotech.jukebox.CMD_PAUSE";
+	public static final String CMD_STOP = "com.budrotech.jukebox.CMD_STOP";
+	public static final String CMD_PREVIOUS = "com.budrotech.jukebox.CMD_PREVIOUS";
+	public static final String CMD_NEXT = "com.budrotech.jukebox.CMD_NEXT";
 
 	private final IBinder binder = new SimpleServiceBinder<DownloadService>(this);
 	private Looper mediaPlayerLooper;

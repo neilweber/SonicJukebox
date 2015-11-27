@@ -21,11 +21,11 @@ package com.budrotech.jukebox.service.parser;
 import android.content.Context;
 import android.util.Xml;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Version;
 import com.budrotech.jukebox.util.ProgressListener;
 import com.budrotech.jukebox.util.Util;
 
-import org.moire.jukebox.R;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.Reader;

@@ -52,6 +52,7 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.MusicDirectory.Entry;
 import com.budrotech.jukebox.domain.PlayerState;
@@ -77,8 +78,6 @@ import com.budrotech.jukebox.util.VideoPlayerType;
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
 
-import org.moire.jukebox.R;
-
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -101,9 +100,9 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 
 	private boolean destroyed;
 
-	private static final String STATE_MENUDRAWER = "org.moire.jukebox.menuDrawer";
-	private static final String STATE_ACTIVE_VIEW_ID = "org.moire.jukebox.activeViewId";
-	private static final String STATE_ACTIVE_POSITION = "org.moire.jukebox.activePosition";
+	private static final String STATE_MENUDRAWER = "com.budrotech.jukebox.menuDrawer";
+	private static final String STATE_ACTIVE_VIEW_ID = "com.budrotech.jukebox.activeViewId";
+	private static final String STATE_ACTIVE_POSITION = "com.budrotech.jukebox.activePosition";
 	private static final int DIALOG_ASK_FOR_SHARE_DETAILS = 102;
 
 	public MenuDrawer menuDrawer;

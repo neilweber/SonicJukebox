@@ -23,7 +23,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.util.Log;
 
-import org.moire.jukebox.R;
+import com.budrotech.jukebox.R;
 
 /**
  * @author Sindre Mehus

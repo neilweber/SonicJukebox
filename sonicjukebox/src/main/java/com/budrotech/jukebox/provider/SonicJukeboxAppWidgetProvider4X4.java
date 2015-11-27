@@ -18,7 +18,7 @@
  */
 package com.budrotech.jukebox.provider;
 
-import org.moire.jukebox.R;
+import com.budrotech.jukebox.R;
 
 public class SonicJukeboxAppWidgetProvider4X4 extends SonicJukeboxAppWidgetProvider
 {

@@ -22,7 +22,8 @@ import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
 
-import org.moire.jukebox.R;
+import com.budrotech.jukebox.R;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.FileNotFoundException;

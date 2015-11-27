@@ -26,13 +26,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
 import com.budrotech.jukebox.util.ImageLoader;
 import com.budrotech.jukebox.util.Util;
-
-import org.moire.jukebox.R;
 
 /**
  * Used to display albums in a {@code ListView}.

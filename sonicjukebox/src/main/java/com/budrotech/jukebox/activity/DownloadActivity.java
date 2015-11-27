@@ -49,6 +49,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.MusicDirectory.Entry;
 import com.budrotech.jukebox.domain.PlayerState;
@@ -64,8 +65,6 @@ import com.budrotech.jukebox.view.AutoRepeatButton;
 import com.budrotech.jukebox.view.SongListAdapter;
 import com.budrotech.jukebox.view.VisualizerView;
 import com.mobeta.android.dslv.DragSortListView;
-
-import org.moire.jukebox.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -5,10 +5,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.JukeboxTabActivity;
 import com.budrotech.jukebox.domain.Share;
-
-import org.moire.jukebox.R;
 
 import java.io.Serializable;
 import java.util.Collections;

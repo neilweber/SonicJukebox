@@ -20,12 +20,12 @@ package com.budrotech.jukebox.service.parser;
 
 import android.content.Context;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.Artist;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.SearchResult;
 import com.budrotech.jukebox.util.ProgressListener;
 
-import org.moire.jukebox.R;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.Reader;

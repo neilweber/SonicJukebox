@@ -27,12 +27,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.JukeboxStatus;
 import com.budrotech.jukebox.domain.PlayerState;
 import com.budrotech.jukebox.service.parser.SubsonicRESTException;
 import com.budrotech.jukebox.util.Util;
-
-import org.moire.jukebox.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;

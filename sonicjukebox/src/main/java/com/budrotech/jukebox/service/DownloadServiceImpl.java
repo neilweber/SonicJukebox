@@ -1389,7 +1389,7 @@ public class DownloadServiceImpl extends Service implements DownloadService
 		}
 		catch (Exception e)
 		{
-			Log.w("Error getting user information", e);
+			Log.w(TAG, "Error getting user information", e);
 		}
 
 		return false;
@@ -1408,7 +1408,7 @@ public class DownloadServiceImpl extends Service implements DownloadService
 		}
 		catch (Exception e)
 		{
-			Log.w("Error getting user information", e);
+			Log.w(TAG, "Error getting user information", e);
 		}
 
 		return false;

@@ -19,7 +19,6 @@ package net.simonvt.menudrawer;
 import android.content.Context;
 import android.hardware.SensorManager;
 import android.os.Build;
-import android.util.FloatMath;
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
@@ -56,7 +55,7 @@ class Scroller  {
     private Interpolator mInterpolator;
     private boolean mFlywheel;
 
-    private float mVelocity;
+    private double mVelocity;
 
     private static final int DEFAULT_DURATION = 250;
     private static final int SCROLL_MODE = 0;
@@ -201,7 +200,7 @@ class Scroller  {
      * @return The original velocity less the deceleration. Result may be
      * negative.
      */
-    public float getCurrVelocity() {
+    public double getCurrVelocity() {
         return mVelocity - mDeceleration * timePassed() / 2000.0f;
     }
 
@@ -367,17 +366,17 @@ class Scroller  {
             int minX, int maxX, int minY, int maxY) {
         // Continue a scroll or fling in progress
         if (mFlywheel && !mFinished) {
-            float oldVel = getCurrVelocity();
+            double oldVel = getCurrVelocity();
 
-            float dx = (float) (mFinalX - mStartX);
-            float dy = (float) (mFinalY - mStartY);
-            float hyp = FloatMath.sqrt(dx * dx + dy * dy);
+            double dx = (double) (mFinalX - mStartX);
+            double dy = (double) (mFinalY - mStartY);
+            double hyp = Math.sqrt(dx * dx + dy * dy);
 
-            float ndx = dx / hyp;
-            float ndy = dy / hyp;
+            double ndx = dx / hyp;
+            double ndy = dy / hyp;
 
-            float oldVelocityX = ndx * oldVel;
-            float oldVelocityY = ndy * oldVel;
+            double oldVelocityX = ndx * oldVel;
+            double oldVelocityY = ndy * oldVel;
             if (Math.signum(velocityX) == Math.signum(oldVelocityX)
                     && Math.signum(velocityY) == Math.signum(oldVelocityY)) {
                 velocityX += oldVelocityX;
@@ -388,7 +387,7 @@ class Scroller  {
         mMode = FLING_MODE;
         mFinished = false;
 
-        float velocity = FloatMath.sqrt(velocityX * velocityX + velocityY * velocityY);
+        double velocity = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
 
         mVelocity = velocity;
         final double l = Math.log(START_TENSION * velocity / ALPHA);
@@ -397,8 +396,8 @@ class Scroller  {
         mStartX = startX;
         mStartY = startY;
 
-        float coeffX = velocity == 0 ? 1.0f : velocityX / velocity;
-        float coeffY = velocity == 0 ? 1.0f : velocityY / velocity;
+        double coeffX = velocity == 0 ? 1.0f : velocityX / velocity;
+        double coeffY = velocity == 0 ? 1.0f : velocityY / velocity;
 
         int totalDistance =
                 (int) (ALPHA * Math.exp(DECELERATION_RATE / (DECELERATION_RATE - 1.0) * l));
@@ -408,12 +407,12 @@ class Scroller  {
         mMinY = minY;
         mMaxY = maxY;
 
-        mFinalX = startX + Math.round(totalDistance * coeffX);
+        mFinalX = startX + (int) Math.round(totalDistance * coeffX);
         // Pin to mMinX <= mFinalX <= mMaxX
         mFinalX = Math.min(mFinalX, mMaxX);
         mFinalX = Math.max(mFinalX, mMinX);
 
-        mFinalY = startY + Math.round(totalDistance * coeffY);
+        mFinalY = startY + (int) Math.round(totalDistance * coeffY);
         // Pin to mMinY <= mFinalY <= mMaxY
         mFinalY = Math.min(mFinalY, mMaxY);
         mFinalY = Math.max(mFinalY, mMinY);

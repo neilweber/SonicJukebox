@@ -297,7 +297,7 @@ public class FileUtil
 			opt.inJustDecodeBounds = false;
 		}
 
-		Log.i("getSampledBitmap", String.valueOf(size));
+		Log.v("getSampledBitmap", String.valueOf(size));
 		return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opt);
 	}
 

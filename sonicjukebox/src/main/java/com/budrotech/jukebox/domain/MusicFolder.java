@@ -18,13 +18,15 @@
  */
 package com.budrotech.jukebox.domain;
 
+import java.io.Serializable;
+
 /**
  * Represents a top level directory in which music or other media is stored.
  *
  * @author Sindre Mehus
  * @version $Id$
  */
-public class MusicFolder
+public class MusicFolder implements Serializable
 {
 
 	private final String id;

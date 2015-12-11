@@ -55,7 +55,6 @@
     <string name="download.menu_show_album">Show Album</string>
     <string name="download.menu_shuffle">Shuffle</string>
     <string name="download.menu_shuffle_notification">Playlist was shuffled</string>
-    <string name="download.menu_visualizer">Visualizer</string>
     <string name="download.playerstate_buffering">Buffering</string>
     <string name="download.playerstate_downloading">Downloading - %s</string>
     <string name="download.playerstate_playing_shuffle">Playing shuffle</string>
@@ -67,8 +66,6 @@
     <string name="download.repeat_all">Repeat All</string>
     <string name="download.repeat_off">Repeat Off</string>
     <string name="download.repeat_single">Repeat Song</string>
-    <string name="download.visualizer_off">Turned off visualizer.</string>
-    <string name="download.visualizer_on">Turned on visualizer.</string>
     <string name="equalizer.enabled">Enabled</string>
     <string name="equalizer.label">Equalizer</string>
     <string name="equalizer.preset">Select Preset</string>

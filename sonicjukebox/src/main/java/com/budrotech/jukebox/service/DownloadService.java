@@ -21,7 +21,6 @@ package com.budrotech.jukebox.service;
 import android.content.Context;
 
 import com.budrotech.jukebox.audiofx.EqualizerController;
-import com.budrotech.jukebox.audiofx.VisualizerController;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.PlayerState;
 import com.budrotech.jukebox.domain.RepeatMode;
@@ -58,8 +57,6 @@ public interface DownloadService
 	boolean getShowVisualization();
 
 	boolean getEqualizerAvailable();
-
-	boolean getVisualizerAvailable();
 
 	void setShowVisualization(boolean showVisualization);
 
@@ -124,8 +121,6 @@ public interface DownloadService
 	String getSuggestedPlaylistName();
 
 	EqualizerController getEqualizerController();
-
-	VisualizerController getVisualizerController();
 
 	boolean isJukeboxEnabled();
 

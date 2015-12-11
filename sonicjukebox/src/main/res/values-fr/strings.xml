@@ -55,7 +55,6 @@
     <string name="download.menu_show_album">Afficher l\'album</string>
     <string name="download.menu_shuffle">Aleatoire</string>
     <string name="download.menu_shuffle_notification">Playlist aleatoire</string>
-    <string name="download.menu_visualizer">Visualiseur</string>
     <string name="download.playerstate_buffering">Mise en mémoire</string>
     <string name="download.playerstate_downloading">Téléchargement - %s</string>
     <string name="download.playerstate_playing_shuffle">En jeu aléatoire</string>
@@ -67,8 +66,6 @@
     <string name="download.repeat_all">Tout répéter</string>
     <string name="download.repeat_off">Répétition désactivée</string>
     <string name="download.repeat_single">Répéter le morceau</string>
-    <string name="download.visualizer_off">Visualiseur désactivé</string>
-    <string name="download.visualizer_on">Visualiseur activé</string>
     <string name="equalizer.enabled">Activé</string>
     <string name="equalizer.label">Égaliseur</string>
     <string name="equalizer.preset">Sélection prédéfinie</string>

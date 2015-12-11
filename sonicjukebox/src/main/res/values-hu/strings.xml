@@ -55,7 +55,6 @@
     <string name="download.menu_show_album">Ugrás az albumhoz</string>
     <string name="download.menu_shuffle">Véletlen sorrendű</string>
     <string name="download.menu_shuffle_notification">Véletlen sorrendű lejátszás</string>
-    <string name="download.menu_visualizer">Visualizer</string>
     <string name="download.playerstate_buffering">Pufferelés</string>
     <string name="download.playerstate_downloading">Letöltés - %s</string>
     <string name="download.playerstate_playing_shuffle">Véletlen sorrendű</string>
@@ -67,8 +66,6 @@
     <string name="download.repeat_all">Összes ismétlése</string>
     <string name="download.repeat_off">Ismétlés ki</string>
     <string name="download.repeat_single">Dal ismétlése</string>
-    <string name="download.visualizer_off">Visualizer ki</string>
-    <string name="download.visualizer_on">Visualizer be</string>
     <string name="equalizer.enabled">Engedélyezve</string>
     <string name="equalizer.label">Equalizer</string>
     <string name="equalizer.preset">Profil kiválasztása</string>

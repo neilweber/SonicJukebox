@@ -43,7 +43,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -63,7 +62,6 @@ import com.budrotech.jukebox.util.SilentBackgroundTask;
 import com.budrotech.jukebox.util.Util;
 import com.budrotech.jukebox.view.AutoRepeatButton;
 import com.budrotech.jukebox.view.SongListAdapter;
-import com.budrotech.jukebox.view.VisualizerView;
 import com.mobeta.android.dslv.DragSortListView;
 
 import java.text.DateFormat;
@@ -112,12 +110,9 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 	private GestureDetector gestureScanner;
 	private int swipeDistance;
 	private int swipeVelocity;
-	private VisualizerView visualizerView;
-	private boolean visualizerAvailable;
 	private boolean equalizerAvailable;
 	private boolean jukeboxAvailable;
 	private SilentBackgroundTask<Void> onProgressChangedTask;
-	LinearLayout visualizerViewLayout;
 	private MenuItem starMenuItem;
 
 	/**
@@ -160,7 +155,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		final View shuffleButton = findViewById(R.id.download_shuffle);
 		repeatButton = (ImageView) findViewById(R.id.download_repeat);
 
-		visualizerViewLayout = (LinearLayout) findViewById(R.id.download_visualizer_view_layout);
 
 		View.OnTouchListener touchListener = new View.OnTouchListener()
 		{
@@ -443,7 +437,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			downloadService.setShufflePlayEnabled(true);
 		}
 
-		visualizerAvailable = (downloadService != null) && (downloadService.getVisualizerController() != null);
 		equalizerAvailable = (downloadService != null) && (downloadService.getEqualizerController() != null);
 
 		new Thread(new Runnable()
@@ -465,36 +458,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 
 		final View nowPlayingMenuItem = findViewById(R.id.menu_now_playing);
 		menuDrawer.setActiveView(nowPlayingMenuItem);
-
-		if (visualizerAvailable)
-		{
-			visualizerView = new VisualizerView(this);
-			visualizerViewLayout.addView(visualizerView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-
-			if (!visualizerView.isActive())
-			{
-				visualizerViewLayout.setVisibility(View.GONE);
-			}
-			else
-			{
-				visualizerViewLayout.setVisibility(View.VISIBLE);
-			}
-
-			visualizerView.setOnTouchListener(new View.OnTouchListener()
-			{
-				@Override
-				public boolean onTouch(final View view, final MotionEvent motionEvent)
-				{
-					visualizerView.setActive(!visualizerView.isActive());
-					getDownloadService().setShowVisualization(visualizerView.isActive());
-					return true;
-				}
-			});
-		}
-		else
-		{
-			visualizerViewLayout.setVisibility(View.GONE);
-		}
 	}
 
 	@Override
@@ -536,11 +499,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		else
 		{
 			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		}
-
-		if (visualizerView != null)
-		{
-			visualizerView.setActive(downloadService != null && downloadService.getShowVisualization());
 		}
 
 		invalidateOptionsMenu();
@@ -586,11 +544,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 	{
 		super.onPause();
 		executorService.shutdown();
-
-		if (visualizerView != null)
-		{
-			visualizerView.setActive(false);
-		}
 	}
 
 	@Override
@@ -673,7 +626,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		final MenuItem screenOption = menu.findItem(R.id.menu_item_screen_on_off);
 		final MenuItem jukeboxOption = menu.findItem(R.id.menu_item_jukebox);
 		final MenuItem equalizerMenuItem = menu.findItem(R.id.menu_item_equalizer);
-		final MenuItem visualizerMenuItem = menu.findItem(R.id.menu_item_visualizer);
 		final MenuItem shareMenuItem = menu.findItem(R.id.menu_item_share);
 		starMenuItem = menu.findItem(R.id.menu_item_star);
 		MenuItem bookmarkMenuItem = menu.findItem(R.id.menu_item_bookmark_set);
@@ -707,12 +659,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		{
 			equalizerMenuItem.setEnabled(equalizerAvailable);
 			equalizerMenuItem.setVisible(equalizerAvailable);
-		}
-
-		if (visualizerMenuItem != null)
-		{
-			visualizerMenuItem.setEnabled(visualizerAvailable);
-			visualizerMenuItem.setVisible(visualizerAvailable);
 		}
 
 		final DownloadService downloadService = getDownloadService();
@@ -924,22 +870,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 				return true;
 			case R.id.menu_item_equalizer:
 				startActivity(new Intent(DownloadActivity.this, EqualizerActivity.class));
-				return true;
-			case R.id.menu_item_visualizer:
-				final boolean active = !visualizerView.isActive();
-				visualizerView.setActive(active);
-
-				if (!visualizerView.isActive())
-				{
-					visualizerViewLayout.setVisibility(View.GONE);
-				}
-				else
-				{
-					visualizerViewLayout.setVisibility(View.VISIBLE);
-				}
-
-				getDownloadService().setShowVisualization(visualizerView.isActive());
-				Util.toast(DownloadActivity.this, active ? R.string.download_visualizer_on : R.string.download_visualizer_off);
 				return true;
 			case R.id.menu_item_jukebox:
 				final boolean jukeboxEnabled = !getDownloadService().isJukeboxEnabled();

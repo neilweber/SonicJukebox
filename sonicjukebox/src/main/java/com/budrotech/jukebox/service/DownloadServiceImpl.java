@@ -45,7 +45,6 @@ import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.activity.DownloadActivity;
 import com.budrotech.jukebox.activity.JukeboxTabActivity;
 import com.budrotech.jukebox.audiofx.EqualizerController;
-import com.budrotech.jukebox.audiofx.VisualizerController;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.PlayerState;
 import com.budrotech.jukebox.domain.RepeatMode;
@@ -120,9 +119,7 @@ public class DownloadServiceImpl extends Service implements DownloadService
 	private int cachedPosition;
 
 	private static boolean equalizerAvailable;
-	private static boolean visualizerAvailable;
 	private EqualizerController equalizerController;
-	private VisualizerController visualizerController;
 	private boolean showVisualization;
 	private boolean jukeboxEnabled;
 	private PositionCache positionCache;
@@ -143,19 +140,6 @@ public class DownloadServiceImpl extends Service implements DownloadService
 		catch (Throwable t)
 		{
 			equalizerAvailable = false;
-		}
-	}
-
-	static
-	{
-		try
-		{
-			VisualizerController.checkAvailable();
-			visualizerAvailable = true;
-		}
-		catch (Throwable t)
-		{
-			visualizerAvailable = false;
 		}
 	}
 
@@ -258,14 +242,6 @@ public class DownloadServiceImpl extends Service implements DownloadService
 				equalizerController.loadSettings();
 			}
 		}
-		if (visualizerAvailable)
-		{
-			visualizerController = new VisualizerController(mediaPlayer);
-			if (!visualizerController.isAvailable())
-			{
-				visualizerController = null;
-			}
-		}
 
 		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
@@ -305,11 +281,6 @@ public class DownloadServiceImpl extends Service implements DownloadService
 			if (equalizerController != null)
 			{
 				equalizerController.release();
-			}
-
-			if (visualizerController != null)
-			{
-				visualizerController.release();
 			}
 
 			if (bufferTask != null)
@@ -1404,12 +1375,6 @@ public class DownloadServiceImpl extends Service implements DownloadService
 	}
 
 	@Override
-	public boolean getVisualizerAvailable()
-	{
-		return visualizerAvailable;
-	}
-
-	@Override
 	public EqualizerController getEqualizerController()
 	{
 		if (equalizerAvailable && equalizerController == null)
@@ -1427,19 +1392,6 @@ public class DownloadServiceImpl extends Service implements DownloadService
 		return equalizerController;
 	}
 
-	@Override
-	public VisualizerController getVisualizerController()
-	{
-		if (visualizerAvailable && visualizerController == null)
-		{
-			visualizerController = new VisualizerController(mediaPlayer);
-			if (!visualizerController.isAvailable())
-			{
-				visualizerController = null;
-			}
-		}
-		return visualizerController;
-	}
 
 	@Override
 	public boolean isJukeboxEnabled()

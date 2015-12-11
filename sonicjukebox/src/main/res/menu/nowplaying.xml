@@ -41,10 +41,6 @@
         a:showAsAction="never"
         a:title="@string/download.menu_equalizer"/>
     <item
-        a:id="@+id/menu_item_visualizer"
-        a:showAsAction="never"
-        a:title="@string/download.menu_visualizer"/>
-    <item
         a:id="@+id/menu_item_jukebox"
         a:showAsAction="never"
         a:title="@string/download.menu_jukebox_on"/>

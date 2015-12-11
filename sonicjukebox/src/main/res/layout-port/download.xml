@@ -26,18 +26,6 @@
                 a:layout_alignParentTop="true"
                 a:layout_centerInParent="true"
                 a:contentDescription="@string/albumArt"/>
-
-            <LinearLayout
-                a:id="@+id/download_visualizer_view_layout"
-                a:layout_width="fill_parent"
-                a:layout_height="60dip"
-                a:layout_alignParentBottom="true"
-                a:layout_gravity="center_horizontal"
-                a:background="@color/translucent"
-                a:layout_marginLeft="80dip"
-                a:layout_marginRight="80dip"
-                a:orientation="vertical"
-                />
         </RelativeLayout>
 
         <include layout="@layout/download_playlist" />

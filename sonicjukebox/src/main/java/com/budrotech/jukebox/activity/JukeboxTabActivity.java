@@ -253,7 +253,7 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		Intent intent = new Intent(this, this.getClass());
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtras(getIntent());
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	@Override
@@ -535,7 +535,7 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 					@Override
 					public void onClick(View view)
 					{
-						startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+						Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 					}
 				});
 
@@ -921,34 +921,12 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 
 	public DownloadService getDownloadService()
 	{
-		// If service is not available, request it to start and wait for it.
-		for (int i = 0; i < 5; i++)
-		{
-			DownloadService downloadService = DownloadServiceImpl.getInstance();
-
-			if (downloadService != null)
-			{
-				return downloadService;
-			}
-
-			Log.w(TAG, "DownloadService not running. Attempting to start it.");
-			startService(new Intent(this, DownloadServiceImpl.class));
-			Util.sleepQuietly(50L);
-		}
-
-		return DownloadServiceImpl.getInstance();
+		return DownloadServiceImpl.getDownloadService(this);
 	}
 
 	protected void warnIfNetworkOrStorageUnavailable()
 	{
-		if (!Util.isExternalStoragePresent())
-		{
-			Util.toast(this, R.string.select_album_no_sdcard);
-		}
-		else if (!Util.isOffline(this) && !Util.isNetworkConnected(this))
-		{
-			Util.toast(this, R.string.select_album_no_network);
-		}
+		Util.warnIfNetworkOrStorageUnavailable(this);
 	}
 
 	public synchronized void clearImageLoader()
@@ -969,53 +947,12 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 
 	void download(final boolean append, final boolean save, final boolean autoPlay, final boolean playNext, final boolean shuffle, final List<Entry> songs)
 	{
-		if (getDownloadService() == null)
+		String playlistName = getIntent().getStringExtra(Constants.INTENT_EXTRA_NAME_PLAYLIST_NAME);
+		DownloadServiceImpl.getDownloadService(JukeboxTabActivity.this).download(JukeboxTabActivity.this, songs, append, save, autoPlay, playNext, shuffle);
+		if (playlistName != null)
 		{
-			return;
+			DownloadServiceImpl.getDownloadService(JukeboxTabActivity.this).setSuggestedPlaylistName(playlistName);
 		}
-
-		Runnable onValid = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				if (!append && !playNext)
-				{
-					getDownloadService().clear();
-				}
-
-				warnIfNetworkOrStorageUnavailable();
-				getDownloadService().download(songs, save, autoPlay, playNext, shuffle, false);
-				String playlistName = getIntent().getStringExtra(Constants.INTENT_EXTRA_NAME_PLAYLIST_NAME);
-
-				if (playlistName != null)
-				{
-					getDownloadService().setSuggestedPlaylistName(playlistName);
-				}
-
-				if (autoPlay)
-				{
-					if (Util.getShouldTransitionOnPlaybackPreference(JukeboxTabActivity.this))
-					{
-						startActivityForResultWithoutTransition(JukeboxTabActivity.this, DownloadActivity.class);
-					}
-				}
-				else if (save)
-				{
-					Util.toast(JukeboxTabActivity.this, getResources().getQuantityString(R.plurals.select_album_n_songs_pinned, songs.size(), songs.size()));
-				}
-				else if (playNext)
-				{
-					Util.toast(JukeboxTabActivity.this, getResources().getQuantityString(R.plurals.select_album_n_songs_play_next, songs.size(), songs.size()));
-				}
-				else if (append)
-				{
-					Util.toast(JukeboxTabActivity.this, getResources().getQuantityString(R.plurals.select_album_n_songs_added, songs.size(), songs.size()));
-				}
-			}
-		};
-
-		checkLicenseAndTrialPeriod(onValid);
 	}
 
 	protected void downloadRecursively(final String id, final boolean save, final boolean append, final boolean autoplay, final boolean shuffle, final boolean background, final boolean playNext, final boolean unpin, final boolean isArtist)
@@ -1164,7 +1101,7 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 							downloadService.download(songs, save, autoplay, playNext, shuffle, false);
 							if (!append && Util.getShouldTransitionOnPlaybackPreference(JukeboxTabActivity.this))
 							{
-								startActivityForResultWithoutTransition(JukeboxTabActivity.this, DownloadActivity.class);
+								Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, DownloadActivity.class);
 							}
 						}
 					}
@@ -1208,28 +1145,7 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 
 	protected void checkLicenseAndTrialPeriod(Runnable onValid)
 	{
-		if (licenseValid)
-		{
-			onValid.run();
-			return;
-		}
-
-		int trialDaysLeft = Util.getRemainingTrialDays(this);
-		Log.i(TAG, trialDaysLeft + " trial days left.");
-
-		if (trialDaysLeft == 0)
-		{
-			showDonationDialog(trialDaysLeft, null);
-		}
-		else if (trialDaysLeft < Constants.FREE_TRIAL_DAYS / 2)
-		{
-			showDonationDialog(trialDaysLeft, onValid);
-		}
-		else
-		{
-			Util.toast(this, getResources().getString(R.string.select_album_not_licensed, trialDaysLeft));
-			onValid.run();
-		}
+		onValid.run();
 	}
 
 	private void showDonationDialog(int trialDaysLeft, final Runnable onValid)
@@ -1419,48 +1335,48 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 			case R.id.menu_home:
 				intent = new Intent(JukeboxTabActivity.this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 			case R.id.menu_browse:
 				intent = new Intent(JukeboxTabActivity.this, SelectArtistActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 			case R.id.menu_search:
 				intent = new Intent(JukeboxTabActivity.this, SearchActivity.class);
 				intent.putExtra(Constants.INTENT_EXTRA_REQUEST_SEARCH, true);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 			case R.id.menu_playlists:
 				intent = new Intent(JukeboxTabActivity.this, SelectPlaylistActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 			case R.id.menu_shares:
 				intent = new Intent(JukeboxTabActivity.this, ShareActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 			case R.id.menu_chat:
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, ChatActivity.class);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, ChatActivity.class);
 				break;
 			case R.id.menu_bookmarks:
-				startActivityForResultWithoutTransition(this, BookmarkActivity.class);
+				Util.startActivityForResultWithoutTransition(this, BookmarkActivity.class);
 				break;
 			case R.id.menu_now_playing:
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, DownloadActivity.class);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, DownloadActivity.class);
 				break;
 			case R.id.menu_settings:
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, SettingsActivity.class);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, SettingsActivity.class);
 				break;
 			case R.id.menu_about:
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, HelpActivity.class);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, HelpActivity.class);
 				break;
 			case R.id.menu_exit:
 				intent = new Intent(JukeboxTabActivity.this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra(Constants.INTENT_EXTRA_NAME_EXIT, true);
-				startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
+				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 		}
 
@@ -1557,7 +1473,7 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 						}
 					}
 
-					JukeboxTabActivity.this.startActivityForResultWithoutTransition(activity, DownloadActivity.class);
+					Util.startActivityForResultWithoutTransition(activity, DownloadActivity.class);
 					return false;
 				}
 			}

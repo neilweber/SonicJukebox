@@ -255,48 +255,48 @@ public final class HelpActivity extends ResultActivity implements OnClickListene
 
 				intent = new Intent(this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 			case R.id.menu_browse:
 				intent = new Intent(this, SelectArtistActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 			case R.id.menu_search:
 				intent = new Intent(this, SearchActivity.class);
 				intent.putExtra(Constants.INTENT_EXTRA_REQUEST_SEARCH, true);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 			case R.id.menu_playlists:
 				intent = new Intent(this, SelectPlaylistActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 			case R.id.menu_shares:
 				intent = new Intent(this, ShareActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 			case R.id.menu_chat:
-				startActivityForResultWithoutTransition(this, ChatActivity.class);
+				Util.startActivityForResultWithoutTransition(this, ChatActivity.class);
 				break;
 			case R.id.menu_bookmarks:
-				startActivityForResultWithoutTransition(this, BookmarkActivity.class);
+				Util.startActivityForResultWithoutTransition(this, BookmarkActivity.class);
 				break;
 			case R.id.menu_now_playing:
-				startActivityForResultWithoutTransition(this, DownloadActivity.class);
+				Util.startActivityForResultWithoutTransition(this, DownloadActivity.class);
 				break;
 			case R.id.menu_settings:
-				startActivityForResultWithoutTransition(this, SettingsActivity.class);
+				Util.startActivityForResultWithoutTransition(this, SettingsActivity.class);
 				break;
 			case R.id.menu_about:
-				startActivityForResultWithoutTransition(this, HelpActivity.class);
+				Util.startActivityForResultWithoutTransition(this, HelpActivity.class);
 				break;
 			case R.id.menu_exit:
 				intent = new Intent(this, MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra(Constants.INTENT_EXTRA_NAME_EXIT, true);
-				startActivityForResultWithoutTransition(this, intent);
+				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 		}
 

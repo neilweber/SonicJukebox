@@ -492,7 +492,7 @@ public class SearchActivity extends JukeboxTabActivity
 		Intent intent = new Intent(this, SelectAlbumActivity.class);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ID, artist.getId());
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_NAME, artist.getName());
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	private void onAlbumSelected(MusicDirectory.Entry album, boolean autoplay)
@@ -502,7 +502,7 @@ public class SearchActivity extends JukeboxTabActivity
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_NAME, album.getTitle());
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_IS_ALBUM, album.isDirectory());
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_AUTOPLAY, autoplay);
-		startActivityForResultWithoutTransition(SearchActivity.this, intent);
+		Util.startActivityForResultWithoutTransition(SearchActivity.this, intent);
 	}
 
 	private void onSongSelected(MusicDirectory.Entry song, boolean save, boolean append, boolean autoplay, boolean playNext)

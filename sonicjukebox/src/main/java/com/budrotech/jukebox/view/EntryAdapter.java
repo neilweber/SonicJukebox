@@ -129,7 +129,7 @@ public class EntryAdapter extends ArrayAdapter<MusicDirectory.Entry>
 	{
 		TextView artist;
 		ImageView cover_art;
-		ImageView star;
+		ImageView add_to_queue;
 		TextView title;
 	}
 }

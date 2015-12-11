@@ -50,7 +50,7 @@ public class QueryReceiverActivity extends ResultActivity
 
 			Intent intent = new Intent(QueryReceiverActivity.this, SearchActivity.class);
 			intent.putExtra(Constants.INTENT_EXTRA_NAME_QUERY, query);
-			startActivityForResultWithoutTransition(QueryReceiverActivity.this, intent);
+			Util.startActivityForResultWithoutTransition(QueryReceiverActivity.this, intent);
 		}
 		finish();
 		Util.disablePendingTransition(this);

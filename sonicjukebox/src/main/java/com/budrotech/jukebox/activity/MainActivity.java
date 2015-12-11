@@ -408,7 +408,7 @@ public class MainActivity extends JukeboxTabActivity
 			case R.id.main_shuffle:
 				final Intent intent1 = new Intent(this, DownloadActivity.class);
 				intent1.putExtra(Constants.INTENT_EXTRA_NAME_SHUFFLE, true);
-				startActivityForResultWithoutTransition(this, intent1);
+				Util.startActivityForResultWithoutTransition(this, intent1);
 				return true;
 		}
 
@@ -462,14 +462,14 @@ public class MainActivity extends JukeboxTabActivity
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_TITLE, title);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, Util.getMaxAlbums(this));
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_OFFSET, 0);
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	private void showStarredSongs()
 	{
 		final Intent intent = new Intent(this, SelectAlbumActivity.class);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_STARRED, 1);
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	private void showRandomSongs()
@@ -477,7 +477,7 @@ public class MainActivity extends JukeboxTabActivity
 		final Intent intent = new Intent(this, SelectAlbumActivity.class);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_RANDOM, 1);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, Util.getMaxSongs(this));
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	private void showArtists()
@@ -485,6 +485,6 @@ public class MainActivity extends JukeboxTabActivity
 		final Intent intent = new Intent(this, SelectArtistActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_TITLE, getResources().getString(R.string.main_artists_title));
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 }

@@ -18,6 +18,8 @@
  */
 package com.budrotech.jukebox.service;
 
+import android.content.Context;
+
 import com.budrotech.jukebox.audiofx.EqualizerController;
 import com.budrotech.jukebox.audiofx.VisualizerController;
 import com.budrotech.jukebox.domain.MusicDirectory;
@@ -32,6 +34,8 @@ import java.util.List;
  */
 public interface DownloadService
 {
+
+	void download(Context context, List<MusicDirectory.Entry> songs, boolean append, boolean save, boolean autoPlay, boolean playNext, boolean shuffle);
 
 	void download(List<MusicDirectory.Entry> songs, boolean save, boolean autoplay, boolean playNext, boolean shuffle, boolean newPlaylist);
 

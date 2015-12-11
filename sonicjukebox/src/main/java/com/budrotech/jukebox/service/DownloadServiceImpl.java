@@ -19,6 +19,7 @@
 package com.budrotech.jukebox.service;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -156,6 +157,26 @@ public class DownloadServiceImpl extends Service implements DownloadService
 		{
 			visualizerAvailable = false;
 		}
+	}
+
+	public static DownloadService getDownloadService(Context context)
+	{
+		// If service is not available, request it to start and wait for it.
+		for (int i = 0; i < 5; i++)
+		{
+			DownloadService downloadService = getInstance();
+
+			if (downloadService != null)
+			{
+				return downloadService;
+			}
+
+			Log.w(TAG, "DownloadService not running. Attempting to start it.");
+			context.startService(new Intent(context, DownloadServiceImpl.class));
+			Util.sleepQuietly(50L);
+		}
+
+		return getInstance();
 	}
 
 	@SuppressLint("NewApi")
@@ -330,6 +351,43 @@ public class DownloadServiceImpl extends Service implements DownloadService
 	}
 
 	@Override
+	public void download(final Context context, final List<MusicDirectory.Entry> songs, final boolean append, final boolean save, final boolean autoPlay, final boolean playNext, final boolean shuffle)
+	{
+		if (getDownloadService(context) == null)
+		{
+			return;
+		}
+
+		if (!append && !playNext)
+		{
+			getDownloadService(context).clear();
+		}
+
+		Util.warnIfNetworkOrStorageUnavailable(context);
+		getDownloadService(context).download(songs, save, autoPlay, playNext, shuffle, false);
+
+		if (autoPlay)
+		{
+			if (Util.getShouldTransitionOnPlaybackPreference(context))
+			{
+				Util.startActivityForResultWithoutTransition((Activity) context, DownloadActivity.class);
+			}
+		}
+		else if (save)
+		{
+			Util.toast(context, getResources().getQuantityString(R.plurals.select_album_n_songs_pinned, songs.size(), songs.size()));
+		}
+		else if (playNext)
+		{
+			Util.toast(context, getResources().getQuantityString(R.plurals.select_album_n_songs_play_next, songs.size(), songs.size()));
+		}
+		else if (append)
+		{
+			Util.toast(context, getResources().getQuantityString(R.plurals.select_album_n_songs_added, songs.size(), songs.size()));
+		}
+	}
+
+	@Override
 	public synchronized void download(List<MusicDirectory.Entry> songs, boolean save, boolean autoplay, boolean playNext, boolean shuffle, boolean newPlaylist)
 	{
 		shufflePlay = false;
@@ -354,9 +412,16 @@ public class DownloadServiceImpl extends Service implements DownloadService
 
 			for (MusicDirectory.Entry song : songs)
 			{
-				DownloadFile downloadFile = new DownloadFile(this, song, save);
-				downloadList.add(getCurrentPlayingIndex() + offset, downloadFile);
-				offset++;
+				if (song.isDirectory())
+                {
+					Log.e(TAG, "Directory passed where expecting a song " + song.getId());
+				}
+				else
+                {
+					DownloadFile downloadFile = new DownloadFile(this, song, save);
+					downloadList.add(getCurrentPlayingIndex() + offset, downloadFile);
+					offset++;
+				}
 			}
 
 			revision++;
@@ -368,8 +433,15 @@ public class DownloadServiceImpl extends Service implements DownloadService
 
 			for (MusicDirectory.Entry song : songs)
 			{
-				DownloadFile downloadFile = new DownloadFile(this, song, save);
-				downloadList.add(downloadFile);
+                if (song.isDirectory())
+                {
+                    Log.e(TAG, "Directory passed where expecting a song " + song.getId());
+                }
+                else
+                {
+    				DownloadFile downloadFile = new DownloadFile(this, song, save);
+	    			downloadList.add(downloadFile);
+                }
 			}
 
 			if (!autoplay && (size - 1) == index)

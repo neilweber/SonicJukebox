@@ -234,7 +234,7 @@ public class BookmarkActivity extends JukeboxTabActivity
 		finish();
 		Intent intent = getIntent();
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_REFRESH, true);
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	@Override

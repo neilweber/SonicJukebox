@@ -53,7 +53,7 @@ public class VoiceQueryReceiverActivity extends ResultActivity
 			Intent intent = new Intent(VoiceQueryReceiverActivity.this, SearchActivity.class);
 			intent.putExtra(Constants.INTENT_EXTRA_NAME_QUERY, query);
 			intent.putExtra(Constants.INTENT_EXTRA_NAME_AUTOPLAY, true);
-			startActivityForResultWithoutTransition(VoiceQueryReceiverActivity.this, intent);
+			Util.startActivityForResultWithoutTransition(VoiceQueryReceiverActivity.this, intent);
 		}
 		finish();
 		Util.disablePendingTransition(this);

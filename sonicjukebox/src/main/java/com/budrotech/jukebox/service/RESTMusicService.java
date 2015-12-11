@@ -1324,7 +1324,12 @@ public class RESTMusicService implements MusicService
 		redirectFrom = originalUrl.substring(0, originalUrl.indexOf("/rest/"));
 		redirectTo = redirectedUrl.substring(0, redirectedUrl.indexOf("/rest/"));
 
-		Log.i(TAG, String.format("%s redirects to %s", redirectFrom, redirectTo));
+		if (!redirectFrom.equals(redirectTo))
+        {
+			Log.i(TAG, String.format("%s redirects to %s", redirectFrom, redirectTo));
+		}
+
+        // TODO this logic must be messed up as it's setting the last checked timestamp for every call
 		redirectionLastChecked = System.currentTimeMillis();
 		redirectionNetworkType = getCurrentNetworkType(context);
 	}

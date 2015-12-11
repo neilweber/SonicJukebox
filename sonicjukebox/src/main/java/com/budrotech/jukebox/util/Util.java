@@ -816,7 +816,7 @@ public class Util extends DownloadActivity
 			public void onClick(DialogInterface dialog, int i)
 			{
 				dialog.dismiss();
-				activity.startActivityForResultWithoutTransition(activity, SettingsActivity.class);
+				startActivityForResultWithoutTransition(activity, SettingsActivity.class);
 			}
 		}).show();
 	}
@@ -1670,5 +1670,28 @@ public class Util extends DownloadActivity
 	{
 		SharedPreferences preferences = getPreferences(context);
 		return Integer.parseInt(preferences.getString(Constants.PREFERENCES_KEY_IMAGE_LOADER_CONCURRENCY, "5"));
+	}
+
+	public static void warnIfNetworkOrStorageUnavailable(Context context)
+	{
+		if (!isExternalStoragePresent())
+		{
+			toast(context, R.string.select_album_no_sdcard);
+		}
+		else if (!isOffline(context) && !isNetworkConnected(context))
+		{
+			toast(context, R.string.select_album_no_network);
+		}
+	}
+
+	public static void startActivityForResultWithoutTransition(Activity currentActivity, Class<? extends Activity> newActivity)
+	{
+		startActivityForResultWithoutTransition(currentActivity, new Intent(currentActivity, newActivity));
+	}
+
+	public static void startActivityForResultWithoutTransition(Activity currentActivity, Intent intent)
+	{
+		currentActivity.startActivityForResult(intent, 0);
+		disablePendingTransition(currentActivity);
 	}
 }

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.budrotech.jukebox.util.Constants;
-import com.budrotech.jukebox.util.Util;
 
 /**
  * Created by Joshua Bahnsen on 12/30/13.
@@ -23,14 +22,4 @@ public class ResultActivity extends Activity
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	public void startActivityForResultWithoutTransition(Activity currentActivity, Class<? extends Activity> newActivity)
-	{
-		startActivityForResultWithoutTransition(currentActivity, new Intent(currentActivity, newActivity));
-	}
-
-	public void startActivityForResultWithoutTransition(Activity currentActivity, Intent intent)
-	{
-		startActivityForResult(intent, 0);
-		Util.disablePendingTransition(currentActivity);
-	}
 }

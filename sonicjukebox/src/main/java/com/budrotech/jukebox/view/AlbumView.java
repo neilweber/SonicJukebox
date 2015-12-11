@@ -19,7 +19,7 @@
 package com.budrotech.jukebox.view;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,10 +28,10 @@ import android.widget.TextView;
 
 import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
+import com.budrotech.jukebox.service.DownloadServiceImpl;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
 import com.budrotech.jukebox.util.ImageLoader;
-import com.budrotech.jukebox.util.Util;
 
 /**
  * Used to display albums in a {@code ListView}.
@@ -41,11 +41,6 @@ import com.budrotech.jukebox.util.Util;
 public class AlbumView extends UpdateView
 {
 	private static final String TAG = AlbumView.class.getSimpleName();
-	private static Drawable starDrawable;
-	private static Drawable starHollowDrawable;
-	private static String theme;
-
-	private Context context;
 	private MusicDirectory.Entry entry;
 	private EntryAdapter.AlbumViewHolder viewHolder;
 	private ImageLoader imageLoader;
@@ -53,32 +48,17 @@ public class AlbumView extends UpdateView
 	public AlbumView(Context context, ImageLoader imageLoader)
 	{
 		super(context);
-		this.context = context;
 		this.imageLoader = imageLoader;
-
-		String theme = Util.getTheme(context);
-		boolean themesMatch = theme.equals(AlbumView.theme);
-		AlbumView.theme = theme;
-
-		if (starHollowDrawable == null || !themesMatch)
-		{
-			starHollowDrawable = Util.getDrawableFromAttribute(context, R.attr.star_hollow);
-		}
-
-		if (starDrawable == null || !themesMatch)
-		{
-			starDrawable = Util.getDrawableFromAttribute(context, R.attr.star_full);
-		}
 	}
 
 	public void setLayout()
 	{
-		LayoutInflater.from(context).inflate(R.layout.album_list_item, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.album_list_item, this, true);
 		viewHolder = new EntryAdapter.AlbumViewHolder();
 		viewHolder.title = (TextView) findViewById(R.id.album_title);
 		viewHolder.artist = (TextView) findViewById(R.id.album_artist);
 		viewHolder.cover_art = (ImageView) findViewById(R.id.album_coverart);
-		viewHolder.star = (ImageView) findViewById(R.id.album_star);
+		viewHolder.add_to_queue = (ImageView) findViewById(R.id.album_add_to_queue);
 		setTag(viewHolder);
 	}
 
@@ -102,60 +82,33 @@ public class AlbumView extends UpdateView
 
 		String title = album.getTitle();
 		String artist = album.getArtist();
-		boolean starred = album.getStarred();
 
 		viewHolder.title.setText(title);
 		viewHolder.artist.setText(artist);
 		viewHolder.artist.setVisibility(artist == null ? GONE : VISIBLE);
-		viewHolder.star.setImageDrawable(starred ? starDrawable : starHollowDrawable);
 
-		if (Util.isOffline(this.context) || "-1".equals(album.getId()))
+		if ("-1".equals(album.getId()))
 		{
-			viewHolder.star.setVisibility(GONE);
+			viewHolder.add_to_queue.setVisibility(GONE);
 		}
 		else
 		{
-			viewHolder.star.setOnClickListener(new View.OnClickListener()
-			{
+			viewHolder.add_to_queue.setOnClickListener(new View.OnClickListener() {
 				@Override
-				public void onClick(View view)
-				{
-					final boolean isStarred = album.getStarred();
-					final String id = album.getId();
-
-					if (!isStarred)
-					{
-						viewHolder.star.setImageDrawable(starDrawable);
-						album.setStarred(true);
-					}
-					else
-					{
-						viewHolder.star.setImageDrawable(starHollowDrawable);
-						album.setStarred(false);
-					}
-
-					new Thread(new Runnable()
-					{
+				public void onClick(View view) {
+					new Thread(new Runnable() {
 						@Override
-						public void run()
-						{
-							MusicService musicService = MusicServiceFactory.getMusicService(null);
-							boolean useId3 = Util.getShouldUseId3Tags(getContext());
+						public void run() {
+							try {
+								Looper.prepare();
 
-							try
-							{
-								if (!isStarred)
-								{
-									musicService.star(!useId3 ? id : null, useId3 ? id : null, null, getContext(), null);
-								}
-								else
-								{
-									musicService.unstar(!useId3 ? id : null, useId3 ? id : null, null, getContext(), null);
-								}
-							}
-							catch (Exception e)
-							{
-								Log.e(TAG, e.getMessage(), e);
+								MusicService musicService = MusicServiceFactory.getMusicService(getContext());
+								MusicDirectory musicDirectory = musicService.getMusicDirectory(album.getId(), album.getArtist(), false, getContext(), null);
+								DownloadServiceImpl.getDownloadService(getContext()).download(getContext(), musicDirectory.getChildren(), true, false, false, false, false);
+							} catch (Exception e) {
+								Log.e(TAG, "Error queuing up songs in album " + album.getId(), e);
+							} finally {
+								Looper.loop();
 							}
 						}
 					}).start();

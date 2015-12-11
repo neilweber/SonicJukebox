@@ -40,12 +40,12 @@
     </LinearLayout>
 
     <ImageView
-        	a:id="@+id/album_star" 
+        	a:id="@+id/album_add_to_queue"
         	a:layout_width="wrap_content"
 			a:layout_height="fill_parent"
 			a:gravity="center_vertical"
 			a:background="@android:color/transparent"
-            a:src="?attr/star_hollow"
+            a:src="?attr/add_to_queue"
             a:focusable="false"
             a:paddingRight="3dip" />
     

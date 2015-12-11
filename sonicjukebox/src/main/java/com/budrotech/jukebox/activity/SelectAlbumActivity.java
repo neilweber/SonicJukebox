@@ -123,7 +123,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_IS_ALBUM, entry.isDirectory());
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_NAME, entry.getTitle());
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_PARENT_ID, entry.getParent());
-						startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
+						Util.startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
 					}
 					else if (entry != null && entry.isVideo())
 					{
@@ -389,7 +389,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 		finish();
 		Intent intent = getIntent();
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_REFRESH, true);
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	@Override
@@ -485,7 +485,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			case R.id.main_shuffle:
 				Intent intent1 = new Intent(this, DownloadActivity.class);
 				intent1.putExtra(Constants.INTENT_EXTRA_NAME_SHUFFLE, true);
-				startActivityForResultWithoutTransition(this, intent1);
+				Util.startActivityForResultWithoutTransition(this, intent1);
 				return true;
 			case R.id.select_album_play_all:
 				playAll();
@@ -728,7 +728,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_GENRE_NAME, genre);
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, size);
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_OFFSET, offset);
-						startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
+						Util.startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
 					}
 				});
 
@@ -858,7 +858,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_TYPE, type);
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, size);
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_OFFSET, offset);
-								startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
+								Util.startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
 							}
 						});
 					}
@@ -1113,7 +1113,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_RANDOM, 1);
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_SIZE, listSize);
 								intent.putExtra(Constants.INTENT_EXTRA_NAME_ALBUM_LIST_OFFSET, offset);
-								startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
+								Util.startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
 							}
 						});
 					}

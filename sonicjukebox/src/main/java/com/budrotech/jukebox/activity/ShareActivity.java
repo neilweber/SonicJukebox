@@ -112,7 +112,7 @@ public class ShareActivity extends JukeboxTabActivity implements AdapterView.OnI
 		finish();
 		Intent intent = new Intent(this, ShareActivity.class);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_REFRESH, true);
-		startActivityForResultWithoutTransition(this, intent);
+		Util.startActivityForResultWithoutTransition(this, intent);
 	}
 
 	private void load()
@@ -219,7 +219,7 @@ public class ShareActivity extends JukeboxTabActivity implements AdapterView.OnI
 		Intent intent = new Intent(ShareActivity.this, SelectAlbumActivity.class);
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_SHARE_ID, share.getId());
 		intent.putExtra(Constants.INTENT_EXTRA_NAME_SHARE_NAME, share.getName());
-		startActivityForResultWithoutTransition(ShareActivity.this, intent);
+		Util.startActivityForResultWithoutTransition(ShareActivity.this, intent);
 	}
 
 	private void deleteShare(final Share share)

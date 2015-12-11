@@ -70,12 +70,12 @@
         a:paddingRight="8dip"/>
 
     <ImageView
-        a:id="@+id/download_repeat"
+        a:id="@+id/download_star"
         a:layout_width="0dip"
         a:layout_height="wrap_content"
         a:layout_weight="1"
         a:focusable="true"
-        a:src="?attr/media_repeat_off"
+        a:src="?attr/star_hollow"
         a:paddingLeft="8dip"
         a:paddingRight="2dip"/>
 

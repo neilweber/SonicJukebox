@@ -7,34 +7,29 @@
         a:showAsAction="always"
         a:title="@string/download.toggle_playlist"/>
     <item
-        a:id="@+id/menu_item_star"
-        a:icon="?attr/star_hollow"
-        a:showAsAction="ifRoom|withText"
-        a:title="@string/download.menu_star"/>
+        a:id="@+id/menu_item_clear_playlist"
+        a:icon="?attr/remove_all"
+        a:showAsAction="never"
+        a:title="@string/download.menu_clear_playlist"/>
     <item
         a:id="@+id/menu_item_share"
         a:icon="?attr/share"
-        a:showAsAction="ifRoom|withText"
+        a:showAsAction="never"
         a:title="@string/download.share_playlist"/>
     <item
         a:id="@+id/menu_item_save_playlist"
         a:icon="?attr/save"
-        a:showAsAction="ifRoom|withText"
+        a:showAsAction="never"
         a:title="@string/download.menu_save"/>
-    <item
-        a:id="@+id/menu_item_clear_playlist"
-        a:icon="?attr/remove_all"
-        a:showAsAction="ifRoom|withText"
-        a:title="@string/download.menu_clear_playlist"/>
     <item
         a:id="@+id/menu_item_bookmark_set"
         a:icon="?attr/bookmark"
-        a:showAsAction="ifRoom|withText"
+        a:showAsAction="never"
         a:title="@string/download.bookmark_set"/>
     <item
         a:id="@+id/menu_item_bookmark_delete"
         a:icon="?attr/bookmark"
-        a:showAsAction="ifRoom|withText"
+        a:showAsAction="never"
         a:title="@string/download.bookmark_delete"/>
     <item
         a:id="@+id/menu_item_equalizer"

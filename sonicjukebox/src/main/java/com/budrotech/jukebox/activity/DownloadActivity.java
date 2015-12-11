@@ -23,7 +23,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -52,7 +51,6 @@ import com.budrotech.jukebox.R;
 import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.domain.MusicDirectory.Entry;
 import com.budrotech.jukebox.domain.PlayerState;
-import com.budrotech.jukebox.domain.RepeatMode;
 import com.budrotech.jukebox.service.DownloadFile;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.MusicService;
@@ -101,7 +99,7 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 	private View pauseButton;
 	private View stopButton;
 	private View startButton;
-	private ImageView repeatButton;
+	private ImageView starButton;
 	private ScheduledExecutorService executorService;
 	private DownloadFile currentPlaying;
 	private Entry currentSong;
@@ -153,8 +151,10 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		stopButton = findViewById(R.id.download_stop);
 		startButton = findViewById(R.id.download_start);
 		final View shuffleButton = findViewById(R.id.download_shuffle);
-		repeatButton = (ImageView) findViewById(R.id.download_repeat);
-
+		starButton = (ImageView) findViewById(R.id.download_star);
+		if (Util.isOffline(this)) {
+			// TODO remove star button
+		}
 
 		View.OnTouchListener touchListener = new View.OnTouchListener()
 		{
@@ -342,30 +342,54 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			}
 		});
 
-		repeatButton.setOnClickListener(new View.OnClickListener()
-		{
+		starButton.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(final View view)
-			{
-				final RepeatMode repeatMode = getDownloadService().getRepeatMode().next();
+			public void onClick(final View view) {
 
-				getDownloadService().setRepeatMode(repeatMode);
-				onDownloadListChanged();
-
-				switch (repeatMode)
+                currentSong = getCurrentSong();
+				if (currentSong == null)
 				{
-					case OFF:
-						Util.toast(DownloadActivity.this, R.string.download_repeat_off);
-						break;
-					case ALL:
-						Util.toast(DownloadActivity.this, R.string.download_repeat_all);
-						break;
-					case SINGLE:
-						Util.toast(DownloadActivity.this, R.string.download_repeat_single);
-						break;
-					default:
-						break;
+					return;
 				}
+
+				final boolean isStarred = currentSong.getStarred();
+				final String id = currentSong.getId();
+
+				if (isStarred)
+				{
+					starButton.setImageDrawable(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_hollow));
+					currentSong.setStarred(false);
+				}
+				else
+				{
+					starButton.setImageDrawable(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_full));
+					currentSong.setStarred(true);
+				}
+
+				new Thread(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						final MusicService musicService = MusicServiceFactory.getMusicService(DownloadActivity.this);
+
+						try
+						{
+							if (isStarred)
+							{
+								musicService.unstar(id, null, null, DownloadActivity.this, null);
+							}
+							else
+							{
+								musicService.star(id, null, null, DownloadActivity.this, null);
+							}
+						}
+						catch (Exception e)
+						{
+							Log.e(TAG, e.getMessage(), e);
+						}
+					}
+				}).start();
 			}
 		});
 
@@ -627,7 +651,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		final MenuItem jukeboxOption = menu.findItem(R.id.menu_item_jukebox);
 		final MenuItem equalizerMenuItem = menu.findItem(R.id.menu_item_equalizer);
 		final MenuItem shareMenuItem = menu.findItem(R.id.menu_item_share);
-		starMenuItem = menu.findItem(R.id.menu_item_star);
 		MenuItem bookmarkMenuItem = menu.findItem(R.id.menu_item_bookmark_set);
 		MenuItem bookmarkRemoveMenuItem = menu.findItem(R.id.menu_item_bookmark_delete);
 
@@ -637,11 +660,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			if (shareMenuItem != null)
 			{
 				shareMenuItem.setVisible(false);
-			}
-
-			if (starMenuItem != null)
-			{
-				starMenuItem.setVisible(false);
 			}
 
 			if (bookmarkMenuItem != null)
@@ -665,33 +683,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 
 		if (downloadService != null)
 		{
-			DownloadFile downloadFile = downloadService.getCurrentPlaying();
-
-			if (downloadFile != null)
-			{
-				currentSong = downloadFile.getSong();
-			}
-
-			if (currentSong != null)
-			{
-				final Drawable starDrawable = currentSong.getStarred() ? Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_full) : Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_hollow);
-
-				if (starMenuItem != null)
-				{
-					starMenuItem.setIcon(starDrawable);
-				}
-			}
-			else
-			{
-				final Drawable starDrawable = Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_hollow);
-
-				if (starMenuItem != null)
-				{
-					starMenuItem.setIcon(starDrawable);
-				}
-			}
-
-
 			if (downloadService.getKeepScreenOn())
 			{
 				if (screenOption != null)
@@ -725,6 +716,23 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 
 		return true;
 	}
+
+	private Entry getCurrentSong()
+	{
+		final DownloadService downloadService = getDownloadService();
+		if (downloadService == null)
+        {
+			return null;
+		}
+
+        DownloadFile downloadFile = downloadService.getCurrentPlaying();
+		if (downloadFile == null)
+        {
+			return null;
+		}
+
+		return downloadFile.getSong();
+    }
 
 	@Override
 	public void onCreateContextMenu(final ContextMenu menu, final View view, final ContextMenu.ContextMenuInfo menuInfo)
@@ -889,52 +897,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 				{
 					showDialog(DIALOG_SAVE_PLAYLIST);
 				}
-				return true;
-			case R.id.menu_item_star:
-				if (currentSong == null)
-				{
-					return true;
-				}
-
-				final boolean isStarred = currentSong.getStarred();
-				final String id = currentSong.getId();
-
-				if (isStarred)
-				{
-					starMenuItem.setIcon(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_hollow));
-					currentSong.setStarred(false);
-				}
-				else
-				{
-					starMenuItem.setIcon(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_full));
-					currentSong.setStarred(true);
-				}
-
-				new Thread(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						final MusicService musicService = MusicServiceFactory.getMusicService(DownloadActivity.this);
-
-						try
-						{
-							if (isStarred)
-							{
-								musicService.unstar(id, null, null, DownloadActivity.this, null);
-							}
-							else
-							{
-								musicService.star(id, null, null, DownloadActivity.this, null);
-							}
-						}
-						catch (Exception e)
-						{
-							Log.e(TAG, e.getMessage(), e);
-						}
-					}
-				}).start();
-
 				return true;
 			case R.id.menu_item_bookmark_set:
 				if (currentSong == null)
@@ -1200,21 +1162,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 
 		emptyTextView.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
 		currentRevision = downloadService.getDownloadListUpdateRevision();
-
-		switch (downloadService.getRepeatMode())
-		{
-			case OFF:
-				repeatButton.setImageDrawable(Util.getDrawableFromAttribute(this, R.attr.media_repeat_off));
-				break;
-			case ALL:
-				repeatButton.setImageDrawable(Util.getDrawableFromAttribute(this, R.attr.media_repeat_all));
-				break;
-			case SINGLE:
-				repeatButton.setImageDrawable(Util.getDrawableFromAttribute(this, R.attr.media_repeat_single));
-				break;
-			default:
-				break;
-		}
 	}
 
 	private void onCurrentChanged()
@@ -1241,6 +1188,7 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		if (currentPlaying != null)
 		{
 			currentSong = currentPlaying.getSong();
+			starButton.setImageDrawable(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), currentSong.getStarred() ? R.attr.star_full : R.attr.star_hollow));
 			songTitleTextView.setText(currentSong.getTitle());
 			albumTextView.setText(currentSong.getAlbum());
 			artistTextView.setText(currentSong.getArtist());
@@ -1251,6 +1199,7 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		else
 		{
 			currentSong = null;
+			starButton.setImageDrawable(Util.getDrawableFromAttribute(JukeboxTabActivity.getInstance(), R.attr.star_hollow));
 			songTitleTextView.setText(null);
 			albumTextView.setText(null);
 			artistTextView.setText(null);

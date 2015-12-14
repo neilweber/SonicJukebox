@@ -9,16 +9,6 @@
               a:paddingRight="4dip"
     >
 
-<ImageView
-        a:id="@+id/download_shuffle"
-        a:layout_width="0dip"
-        a:layout_height="wrap_content"
-        a:layout_weight="1"
-        a:focusable="true"
-        a:src="?attr/media_shuffle"
-        a:paddingLeft="2dip"
-        a:paddingRight="8dip"/>
-
     <com.budrotech.jukebox.view.AutoRepeatButton
         a:id="@+id/download_previous"
         a:layout_width="0dip"

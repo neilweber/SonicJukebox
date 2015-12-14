@@ -150,7 +150,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 		pauseButton = findViewById(R.id.download_pause);
 		stopButton = findViewById(R.id.download_stop);
 		startButton = findViewById(R.id.download_start);
-		final View shuffleButton = findViewById(R.id.download_shuffle);
 		starButton = (ImageView) findViewById(R.id.download_star);
 		if (Util.isOffline(this)) {
 			// TODO remove star button
@@ -176,25 +175,20 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			}
 		});
 
-		previousButton.setOnClickListener(new View.OnClickListener()
-		{
+		previousButton.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(final View view)
-			{
+			public void onClick(final View view) {
 				warnIfNetworkOrStorageUnavailable();
 
-				new SilentBackgroundTask<Void>(DownloadActivity.this)
-				{
+				new SilentBackgroundTask<Void>(DownloadActivity.this) {
 					@Override
-					protected Void doInBackground() throws Throwable
-					{
+					protected Void doInBackground() throws Throwable {
 						getDownloadService().previous();
 						return null;
 					}
 
 					@Override
-					protected void done(final Void result)
-					{
+					protected void done(final Void result) {
 						onCurrentChanged();
 						onSliderProgressChanged();
 					}
@@ -202,44 +196,33 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			}
 		});
 
-		previousButton.setOnRepeatListener(new Runnable()
-		{
+		previousButton.setOnRepeatListener(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				int incrementTime = Util.getIncrementTime(DownloadActivity.this);
 				changeProgress(-incrementTime);
 			}
 		});
 
-		nextButton.setOnClickListener(new View.OnClickListener()
-		{
+		nextButton.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(final View view)
-			{
+			public void onClick(final View view) {
 				warnIfNetworkOrStorageUnavailable();
 
-				new SilentBackgroundTask<Boolean>(DownloadActivity.this)
-				{
+				new SilentBackgroundTask<Boolean>(DownloadActivity.this) {
 					@Override
-					protected Boolean doInBackground() throws Throwable
-					{
-						if (getDownloadService().getCurrentPlayingIndex() < getDownloadService().size() - 1)
-						{
+					protected Boolean doInBackground() throws Throwable {
+						if (getDownloadService().getCurrentPlayingIndex() < getDownloadService().size() - 1) {
 							getDownloadService().next();
 							return true;
-						}
-						else
-						{
+						} else {
 							return false;
 						}
 					}
 
 					@Override
-					protected void done(final Boolean result)
-					{
-						if (result)
-						{
+					protected void done(final Boolean result) {
+						if (result) {
 							onCurrentChanged();
 							onSliderProgressChanged();
 						}
@@ -248,11 +231,9 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 			}
 		});
 
-		nextButton.setOnRepeatListener(new Runnable()
-		{
+		nextButton.setOnRepeatListener(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				int incrementTime = Util.getIncrementTime(DownloadActivity.this);
 				changeProgress(incrementTime);
 			}
@@ -329,16 +310,6 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 						onSliderProgressChanged();
 					}
 				}.execute();
-			}
-		});
-
-		shuffleButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View view)
-			{
-				getDownloadService().shuffle();
-				Util.toast(DownloadActivity.this, R.string.download_menu_shuffle_notification);
 			}
 		});
 
@@ -872,7 +843,7 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 					getDownloadService().setKeepScreenOn(true);
 				}
 				return true;
-			case R.id.menu_shuffle:
+			case R.id.menu_item_shuffle_playlist:
 				getDownloadService().shuffle();
 				Util.toast(this, R.string.download_menu_shuffle_notification);
 				return true;
@@ -992,6 +963,7 @@ public class DownloadActivity extends JukeboxTabActivity implements OnGestureLis
 				createShare(entries);
 				return true;
 			default:
+				Log.w(TAG, "Unexpected menu item " + menuItemId);
 				return false;
 		}
 	}

@@ -7,6 +7,11 @@
         a:showAsAction="always"
         a:title="@string/download.toggle_playlist"/>
     <item
+        a:id="@+id/menu_item_shuffle_playlist"
+        a:icon="?attr/media_shuffle"
+        a:showAsAction="ifRoom"
+        a:title="@string/download.menu_shuffle"/>
+    <item
         a:id="@+id/menu_item_clear_playlist"
         a:icon="?attr/remove_all"
         a:showAsAction="never"

@@ -71,6 +71,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author Sindre Mehus, Joshua Bahnsen
@@ -469,29 +470,38 @@ public class DownloadServiceImpl extends Service implements DownloadService {
             sortedDownloadFiles.add(downloadFile);
         }
 
-        DownloadFile[] shuffledList = new DownloadFile[downloadList.size()];
+        Random random = new Random();
         ArrayList<String> keys = new ArrayList<String>(sortedDownloadFile.keySet());
-        Collections.shuffle(keys);
-        for (int i = 0; i < keys.size(); i++) {
-            String key = keys.get(i);
+        DownloadFile[][] shuffledLists = new DownloadFile[keys.size()][];
+        for (int keyIndex = 0; keyIndex < keys.size(); keyIndex++) {
+            String key = keys.get(keyIndex);
             List<DownloadFile> sortedDownloadFiles = sortedDownloadFile.get(key);
             Collections.shuffle(sortedDownloadFiles);
 
-            int insertIndex = i;
-            int keyGap = downloadList.size() / sortedDownloadFiles.size();
-            for (DownloadFile downloadFile : sortedDownloadFiles) {
-                int adjust = 0;
-                while (shuffledList[insertIndex + adjust] != null) {
-                    adjust++;
-                }
+            DownloadFile[] shuffledList = new DownloadFile[downloadList.size()];
+            shuffledLists[keyIndex] = shuffledList;
 
-                shuffledList[insertIndex + adjust] = downloadFile;
+            int keyGap = downloadList.size() / sortedDownloadFiles.size();
+            int insertIndex = keyGap == 1 ? 0 : random.nextInt(keyGap - 1);
+            for (DownloadFile downloadFile : sortedDownloadFiles) {
+                shuffledList[insertIndex] = downloadFile;
                 insertIndex += keyGap;
             }
         }
 
-        for (int i = 0; i < shuffledList.length; i++) {
-            downloadList.set(i, shuffledList[i]);
+        List<DownloadFile> slots = new ArrayList<DownloadFile>(keys.size());
+        for (int shuffledIndex = 0, insertIndex = 0; insertIndex < downloadList.size(); shuffledIndex++) {
+            slots.clear();
+            for (int keyIndex = 0; keyIndex < keys.size(); keyIndex++) {
+                if (shuffledLists[keyIndex][shuffledIndex] != null) {
+                    slots.add(shuffledLists[keyIndex][shuffledIndex]);
+                }
+            }
+
+            Collections.shuffle(slots);
+            for (DownloadFile downloadFile : slots) {
+                downloadList.set(insertIndex++, downloadFile);
+            }
         }
 
         if (currentPlaying != null) {

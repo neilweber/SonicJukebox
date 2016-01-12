@@ -29,6 +29,7 @@
     <application
         a:allowBackup="false"
         a:icon="@drawable/ic_launcher"
+        a:theme="@style/SonicJukeboxTheme"
         a:label="@string/common.appname">
         <activity
             a:name="com.budrotech.jukebox.activity.MainActivity"

@@ -367,7 +367,7 @@ public class BookmarkActivity extends JukeboxTabActivity
 			}
 		};
 
-		checkLicenseAndTrialPeriod(onValid);
+		onValid.run();
 	}
 
 	private void delete()

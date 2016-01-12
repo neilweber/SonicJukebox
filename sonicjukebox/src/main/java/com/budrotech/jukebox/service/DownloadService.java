@@ -54,11 +54,7 @@ public interface DownloadService
 
 	void setKeepScreenOn(boolean screenOn);
 
-	boolean getShowVisualization();
-
 	boolean getEqualizerAvailable();
-
-	void setShowVisualization(boolean showVisualization);
 
 	void clear();
 
@@ -67,8 +63,6 @@ public interface DownloadService
 	void clearIncomplete();
 
 	int size();
-
-	void remove(int which);
 
 	void remove(DownloadFile downloadFile);
 
@@ -135,8 +129,6 @@ public interface DownloadService
 	void togglePlayPause();
 
 	void setVolume(float volume);
-
-	void swap(boolean mainList, int from, int to);
 
 	void restore(List<MusicDirectory.Entry> songs, int currentPlayingIndex, int currentPlayingPosition, boolean autoPlay, boolean newPlaylist);
 

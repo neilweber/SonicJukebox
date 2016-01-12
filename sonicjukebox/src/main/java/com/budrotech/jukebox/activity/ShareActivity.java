@@ -164,19 +164,19 @@ public class ShareActivity extends JukeboxTabActivity implements AdapterView.OnI
 		switch (menuItem.getItemId())
 		{
 			case R.id.share_menu_pin:
-				downloadShare(share.getId(), share.getName(), true, true, false, false, true, false, false);
+				downloadShare(share.getId(), share.getName(), true, true, false, false, true, false);
 				break;
 			case R.id.share_menu_unpin:
-				downloadShare(share.getId(), share.getName(), false, false, false, false, true, false, true);
+				downloadShare(share.getId(), share.getName(), false, false, false, false, true, true);
 				break;
 			case R.id.share_menu_download:
-				downloadShare(share.getId(), share.getName(), false, false, false, false, true, false, false);
+				downloadShare(share.getId(), share.getName(), false, false, false, false, true, false);
 				break;
 			case R.id.share_menu_play_now:
-				downloadShare(share.getId(), share.getName(), false, false, true, false, false, false, false);
+				downloadShare(share.getId(), share.getName(), false, false, true, false, false, false);
 				break;
 			case R.id.share_menu_play_shuffled:
-				downloadShare(share.getId(), share.getName(), false, false, true, true, false, false, false);
+				downloadShare(share.getId(), share.getName(), false, false, true, true, false, false);
 				break;
 			case R.id.share_menu_delete:
 				deleteShare(share);

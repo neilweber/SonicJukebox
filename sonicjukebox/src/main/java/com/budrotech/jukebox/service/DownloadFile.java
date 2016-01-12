@@ -474,7 +474,7 @@ public class DownloadFile
 			return String.format("DownloadTask (%s)", song);
 		}
 
-		private void downloadAndSaveCoverArt(MusicService musicService) throws Exception
+		private void downloadAndSaveCoverArt(MusicService musicService)
 		{
 			try
 			{

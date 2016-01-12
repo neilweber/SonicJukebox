@@ -47,7 +47,7 @@ public class CacheCleaner
 		catch (Exception ex)
 		{
 			// If an exception is thrown, assume we execute correctly the next time
-			Log.w("Exception in CacheCleaner.clean", ex);
+			Log.w(TAG, "Exception in CacheCleaner.clean", ex);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class CacheCleaner
 		catch (Exception ex)
 		{
 			// If an exception is thrown, assume we execute correctly the next time
-			Log.w("Exception in CacheCleaner.cleanSpace", ex);
+			Log.w(TAG, "Exception in CacheCleaner.cleanSpace", ex);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class CacheCleaner
 		catch (Exception ex)
 		{
 			// If an exception is thrown, assume we execute correctly the next time
-			Log.w("Exception in CacheCleaner.cleanPlaylists", ex);
+			Log.w(TAG, "Exception in CacheCleaner.cleanPlaylists", ex);
 		}
 	}
 

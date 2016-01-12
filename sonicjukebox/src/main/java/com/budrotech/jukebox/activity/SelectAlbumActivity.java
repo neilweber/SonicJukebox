@@ -161,7 +161,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			@Override
 			public void onClick(View view)
 			{
-				playNow(false, false);
+				playNow(false);
 			}
 		});
 		playNextButton.setOnClickListener(new View.OnClickListener()
@@ -169,7 +169,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			@Override
 			public void onClick(View view)
 			{
-				download(true, false, false, true, false, getSelectedSongs(albumListView));
+				download(true, false, true, false, getSelectedSongs(albumListView));
 				selectAll(false, false);
 			}
 		});
@@ -178,7 +178,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			@Override
 			public void onClick(View view)
 			{
-				playNow(false, true);
+				playNow(true);
 			}
 		});
 		pinButton.setOnClickListener(new View.OnClickListener()
@@ -316,18 +316,18 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 		return true;
 	}
 
-	private void playNow(final boolean shuffle, final boolean append)
+	private void playNow(final boolean append)
 	{
 		List<MusicDirectory.Entry> selectedSongs = getSelectedSongs(albumListView);
 
 		if (!selectedSongs.isEmpty())
 		{
-			download(append, false, !append, false, shuffle, selectedSongs);
+			download(append, !append, false, false, selectedSongs);
 			selectAll(false, false);
 		}
 		else
 		{
-			playAll(shuffle, append);
+			playAll(false, append);
 		}
 	}
 
@@ -360,7 +360,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 		else
 		{
 			selectAll(true, false);
-			download(append, false, !append, false, shuffle, getSelectedSongs(albumListView));
+			download(append, !append, false, shuffle, getSelectedSongs(albumListView));
 			selectAll(false, false);
 		}
 	}
@@ -992,7 +992,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 			}
 		};
 
-		checkLicenseAndTrialPeriod(onValid);
+		onValid.run();
 	}
 
 	private void delete()

@@ -175,13 +175,13 @@ public class SelectPlaylistActivity extends JukeboxTabActivity implements Adapte
 		switch (menuItem.getItemId())
 		{
 			case R.id.playlist_menu_pin:
-				downloadPlaylist(playlist.getId(), playlist.getName(), true, true, false, false, true, false, false);
+				downloadPlaylist(playlist.getId(), playlist.getName(), true, true, false);
 				break;
 			case R.id.playlist_menu_unpin:
-				downloadPlaylist(playlist.getId(), playlist.getName(), false, false, false, false, true, false, true);
+				downloadPlaylist(playlist.getId(), playlist.getName(), false, false, true);
 				break;
 			case R.id.playlist_menu_download:
-				downloadPlaylist(playlist.getId(), playlist.getName(), false, false, false, false, true, false, false);
+				downloadPlaylist(playlist.getId(), playlist.getName(), false, false, false);
 				break;
 			case R.id.playlist_menu_play_now:
 				intent = new Intent(SelectPlaylistActivity.this, SelectAlbumActivity.class);

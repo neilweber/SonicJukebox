@@ -122,7 +122,6 @@ public class DownloadServiceImpl extends Service implements DownloadService {
 
     private static boolean equalizerAvailable;
     private EqualizerController equalizerController;
-    private boolean showVisualization;
     private boolean jukeboxEnabled;
     private PositionCache positionCache;
     private StreamProxy proxy;
@@ -130,7 +129,6 @@ public class DownloadServiceImpl extends Service implements DownloadService {
     private AudioManager audioManager;
     private int secondaryProgress = -1;
     private boolean autoPlayStart;
-    private final static int lockScreenBitmapSize = 500;
 
     static {
         try {
@@ -536,16 +534,6 @@ public class DownloadServiceImpl extends Service implements DownloadService {
     }
 
     @Override
-    public boolean getShowVisualization() {
-        return showVisualization;
-    }
-
-    @Override
-    public void setShowVisualization(boolean showVisualization) {
-        this.showVisualization = showVisualization;
-    }
-
-    @Override
     public synchronized DownloadFile forSong(MusicDirectory.Entry song) {
         for (DownloadFile downloadFile : downloadList) {
             if (downloadFile.getSong().equals(song) && ((downloadFile.isDownloading() && !downloadFile.isDownloadCancelled() && downloadFile.getPartialFile().exists()) || downloadFile.isWorkDone())) {
@@ -616,11 +604,6 @@ public class DownloadServiceImpl extends Service implements DownloadService {
         }
         updateJukeboxPlaylist();
         setNextPlaying();
-    }
-
-    @Override
-    public synchronized void remove(int which) {
-        downloadList.remove(which);
     }
 
     @Override
@@ -1563,29 +1546,6 @@ public class DownloadServiceImpl extends Service implements DownloadService {
     public void setVolume(float volume) {
         if (mediaPlayer != null) {
             mediaPlayer.setVolume(volume, volume);
-        }
-    }
-
-    @Override
-    public synchronized void swap(boolean mainList, int from, int to) {
-        List<DownloadFile> list = mainList ? downloadList : backgroundDownloadList;
-        int max = list.size();
-
-        if (to >= max) {
-            to = max - 1;
-        } else if (to < 0) {
-            to = 0;
-        }
-
-        int currentPlayingIndex = getCurrentPlayingIndex();
-        DownloadFile movedSong = list.remove(from);
-        list.add(to, movedSong);
-
-        if (jukeboxEnabled && mainList) {
-            updateJukeboxPlaylist();
-        } else if (mainList && (movedSong == nextPlaying || (currentPlayingIndex + 1) == to)) {
-            // Moving next playing or moving a song to be next playing
-            setNextPlaying();
         }
     }
 

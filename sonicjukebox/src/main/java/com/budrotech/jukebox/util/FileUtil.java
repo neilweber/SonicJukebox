@@ -25,7 +25,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.budrotech.jukebox.activity.JukeboxTabActivity;
-import com.budrotech.jukebox.domain.Artist;
 import com.budrotech.jukebox.domain.MusicDirectory;
 
 import java.io.File;
@@ -299,11 +298,6 @@ public class FileUtil
 
 		Log.v("getSampledBitmap", String.valueOf(size));
 		return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opt);
-	}
-
-	public static File getArtistDirectory(Context context, Artist artist)
-	{
-		return new File(String.format("%s/%s", getMusicDirectory(context).getPath(), fileSystemSafe(artist.getName())));
 	}
 
 	public static File getAlbumArtDirectory()

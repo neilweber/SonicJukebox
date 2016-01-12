@@ -190,7 +190,7 @@ public class RESTMusicService implements MusicService
 	@Override
 	public void ping(Context context, ProgressListener progressListener) throws Exception
 	{
-		Reader reader = getReader(context, progressListener, "ping", null);
+		Reader reader = getReader(context, progressListener, "ping");
 		try
 		{
 			new ErrorParser(context).parse(reader);
@@ -204,7 +204,7 @@ public class RESTMusicService implements MusicService
 	@Override
 	public boolean isLicenseValid(Context context, ProgressListener progressListener) throws Exception
 	{
-		Reader reader = getReader(context, progressListener, "getLicense", null);
+		Reader reader = getReader(context, progressListener, "getLicense");
 		try
 		{
 			ServerInfo serverInfo = new LicenseParser(context).parse(reader);
@@ -225,7 +225,7 @@ public class RESTMusicService implements MusicService
 			return cachedMusicFolders;
 		}
 
-		Reader reader = getReader(context, progressListener, "getMusicFolders", null);
+		Reader reader = getReader(context, progressListener, "getMusicFolders");
 		try
 		{
 			List<MusicFolder> musicFolders = new MusicFoldersParser(context).parse(reader, progressListener);
@@ -304,7 +304,7 @@ public class RESTMusicService implements MusicService
 			return cachedArtists;
 		}
 
-		Reader reader = getReader(context, progressListener, "getArtists", null);
+		Reader reader = getReader(context, progressListener, "getArtists");
 		try
 		{
 			Indexes indexes = new IndexesParser(context).parse(reader, progressListener);
@@ -598,7 +598,7 @@ public class RESTMusicService implements MusicService
 	@Override
 	public List<Playlist> getPlaylists(boolean refresh, Context context, ProgressListener progressListener) throws Exception
 	{
-		Reader reader = getReader(context, progressListener, "getPlaylists", null);
+		Reader reader = getReader(context, progressListener, "getPlaylists");
 		try
 		{
 			return new PlaylistsParser(context).parse(reader, progressListener);
@@ -814,7 +814,7 @@ public class RESTMusicService implements MusicService
 	{
 		checkServerVersion(context, "1.8", "Starred albums not supported.");
 
-		Reader reader = getReader(context, progressListener, "getStarred", null);
+		Reader reader = getReader(context, progressListener, "getStarred");
 		try
 		{
 			return new SearchResult2Parser(context).parse(reader, progressListener, false);
@@ -830,7 +830,7 @@ public class RESTMusicService implements MusicService
 	{
 		checkServerVersion(context, "1.8", "Starred albums by ID3 tag not supported.");
 
-		Reader reader = getReader(context, progressListener, "getStarred2", null);
+		Reader reader = getReader(context, progressListener, "getStarred2");
 		try
 		{
 			return new SearchResult2Parser(context).parse(reader, progressListener, true);
@@ -914,7 +914,7 @@ public class RESTMusicService implements MusicService
 					else
 					{
 						parameterNames = Collections.singletonList("id");
-						parameterValues = Arrays.<Object>asList(entry.getCoverArt());
+						parameterValues = Collections.<Object>singletonList(entry.getCoverArt());
 					}
 
 					HttpEntity entity = getEntityForURL(context, url, null, parameterNames, parameterValues, progressListener);
@@ -1064,19 +1064,19 @@ public class RESTMusicService implements MusicService
 	@Override
 	public JukeboxStatus stopJukebox(Context context, ProgressListener progressListener) throws Exception
 	{
-		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Arrays.<Object>asList("stop"));
+		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Collections.<Object>singletonList("stop"));
 	}
 
 	@Override
 	public JukeboxStatus startJukebox(Context context, ProgressListener progressListener) throws Exception
 	{
-		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Arrays.<Object>asList("start"));
+		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Collections.<Object>singletonList("start"));
 	}
 
 	@Override
 	public JukeboxStatus getJukeboxStatus(Context context, ProgressListener progressListener) throws Exception
 	{
-		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Arrays.<Object>asList("status"));
+		return executeJukeboxCommand(context, progressListener, Collections.singletonList("action"), Collections.<Object>singletonList("status"));
 	}
 
 	@Override
@@ -1091,7 +1091,7 @@ public class RESTMusicService implements MusicService
 	public List<Share> getShares(boolean refresh, Context context, ProgressListener progressListener) throws Exception
 	{
 		checkServerVersion(context, "1.6", "Shares not supported.");
-		Reader reader = getReader(context, progressListener, "getShares", null);
+		Reader reader = getReader(context, progressListener, "getShares");
 		try
 		{
 			return new ShareParser(context).parse(reader, progressListener);
@@ -1116,9 +1116,9 @@ public class RESTMusicService implements MusicService
 		}
 	}
 
-	private Reader getReader(Context context, ProgressListener progressListener, String method, HttpParams requestParams) throws Exception
+	private Reader getReader(Context context, ProgressListener progressListener, String method) throws Exception
 	{
-		return getReader(context, progressListener, method, requestParams, Collections.<String>emptyList(), Collections.emptyList());
+		return getReader(context, progressListener, method, null, Collections.<String>emptyList(), Collections.emptyList());
 	}
 
 	private Reader getReader(Context context, ProgressListener progressListener, String method, HttpParams requestParams, String parameterName, Object parameterValue) throws Exception
@@ -1368,7 +1368,7 @@ public class RESTMusicService implements MusicService
 	{
 		checkServerVersion(context, "1.9", "Genres not supported.");
 
-		Reader reader = getReader(context, progressListener, "getGenres", null);
+		Reader reader = getReader(context, progressListener, "getGenres");
 		try
 		{
 			return new GenreParser(context).parse(reader, progressListener);
@@ -1492,7 +1492,7 @@ public class RESTMusicService implements MusicService
 	{
 		checkServerVersion(context, "1.9", "Bookmarks not supported.");
 
-		Reader reader = getReader(context, progressListener, "getBookmarks", null);
+		Reader reader = getReader(context, progressListener, "getBookmarks");
 
 		try
 		{
@@ -1687,7 +1687,7 @@ public class RESTMusicService implements MusicService
 					List<Object> parameterValues;
 
 					parameterNames = Collections.singletonList("username");
-					parameterValues = Arrays.<Object>asList(username);
+					parameterValues = Collections.<Object>singletonList(username);
 
 					HttpEntity entity = getEntityForURL(context, url, null, parameterNames, parameterValues, progressListener);
 					in = entity.getContent();

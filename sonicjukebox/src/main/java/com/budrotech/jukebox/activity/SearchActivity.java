@@ -153,7 +153,7 @@ public class SearchActivity extends JukeboxTabActivity
 						}
 						else
 						{
-							onSongSelected(entry, false, true, true, false);
+							onSongSelected(entry, true);
 						}
 
 					}
@@ -281,7 +281,7 @@ public class SearchActivity extends JukeboxTabActivity
 				{
 					songs = new ArrayList<MusicDirectory.Entry>(1);
 					songs.add(entry);
-					download(false, false, true, false, false, songs);
+					download(false, true, false, false, songs);
 				}
 				break;
 			case R.id.song_menu_play_next:
@@ -289,7 +289,7 @@ public class SearchActivity extends JukeboxTabActivity
 				{
 					songs = new ArrayList<MusicDirectory.Entry>(1);
 					songs.add(entry);
-					download(true, false, false, true, false, songs);
+					download(true, false, true, false, songs);
 				}
 				break;
 			case R.id.song_menu_play_last:
@@ -297,7 +297,7 @@ public class SearchActivity extends JukeboxTabActivity
 				{
 					songs = new ArrayList<MusicDirectory.Entry>(1);
 					songs.add(entry);
-					download(true, false, false, false, false, songs);
+					download(true, false, false, false, songs);
 				}
 				break;
 			case R.id.song_menu_pin:
@@ -355,7 +355,7 @@ public class SearchActivity extends JukeboxTabActivity
 			}
 		};
 
-		checkLicenseAndTrialPeriod(onValid);
+		onValid.run();
 	}
 
 	private void search(final String query, final boolean autoplay)
@@ -505,22 +505,18 @@ public class SearchActivity extends JukeboxTabActivity
 		Util.startActivityForResultWithoutTransition(SearchActivity.this, intent);
 	}
 
-	private void onSongSelected(MusicDirectory.Entry song, boolean save, boolean append, boolean autoplay, boolean playNext)
+	private void onSongSelected(MusicDirectory.Entry song, boolean append)
 	{
 		DownloadService downloadService = getDownloadService();
 		if (downloadService != null)
 		{
-			if (!append && !playNext)
+			if (!append)
 			{
 				downloadService.clear();
 			}
 
-			downloadService.download(Collections.singletonList(song), save, false, playNext, false, false);
-
-			if (autoplay)
-			{
-				downloadService.play(downloadService.size() - 1);
-			}
+			downloadService.download(Collections.singletonList(song), false, false, false, false, false);
+			downloadService.play(downloadService.size() - 1);
 
 			Util.toast(SearchActivity.this, getResources().getQuantityString(R.plurals.select_album_n_songs_added, 1, 1));
 		}
@@ -535,7 +531,7 @@ public class SearchActivity extends JukeboxTabActivity
 	{
 		if (!searchResult.getSongs().isEmpty())
 		{
-			onSongSelected(searchResult.getSongs().get(0), false, false, true, false);
+			onSongSelected(searchResult.getSongs().get(0), false);
 		}
 		else if (!searchResult.getAlbums().isEmpty())
 		{

@@ -30,7 +30,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -944,10 +943,10 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		return IMAGE_LOADER;
 	}
 
-	void download(final boolean append, final boolean save, final boolean autoPlay, final boolean playNext, final boolean shuffle, final List<Entry> songs)
+	void download(final boolean append, final boolean autoPlay, final boolean playNext, final boolean shuffle, final List<Entry> songs)
 	{
 		String playlistName = getIntent().getStringExtra(Constants.INTENT_EXTRA_NAME_PLAYLIST_NAME);
-		DownloadServiceImpl.getDownloadService(JukeboxTabActivity.this).download(JukeboxTabActivity.this, songs, append, save, autoPlay, playNext, shuffle);
+		DownloadServiceImpl.getDownloadService(JukeboxTabActivity.this).download(JukeboxTabActivity.this, songs, append, false, autoPlay, playNext, shuffle);
 		if (playlistName != null)
 		{
 			DownloadServiceImpl.getDownloadService(JukeboxTabActivity.this).setSuggestedPlaylistName(playlistName);
@@ -959,14 +958,14 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		downloadRecursively(id, "", false, true, save, append, autoplay, shuffle, background, playNext, unpin, isArtist);
 	}
 
-	protected void downloadShare(final String id, final String name, final boolean save, final boolean append, final boolean autoplay, final boolean shuffle, final boolean background, final boolean playNext, final boolean unpin)
+	protected void downloadShare(final String id, final String name, final boolean save, final boolean append, final boolean autoplay, final boolean shuffle, final boolean background, final boolean unpin)
 	{
-		downloadRecursively(id, name, true, false, save, append, autoplay, shuffle, background, playNext, unpin, false);
+		downloadRecursively(id, name, true, false, save, append, autoplay, shuffle, background, false, unpin, false);
 	}
 
-	protected void downloadPlaylist(final String id, final String name, final boolean save, final boolean append, final boolean autoplay, final boolean shuffle, final boolean background, final boolean playNext, final boolean unpin)
+	protected void downloadPlaylist(final String id, final String name, final boolean save, final boolean append, final boolean unpin)
 	{
-		downloadRecursively(id, name, false, false, save, append, autoplay, shuffle, background, playNext, unpin, false);
+		downloadRecursively(id, name, false, false, save, append, false, false, true, false, unpin, false);
 	}
 
 	protected void downloadRecursively(final String id, final String name, final boolean isShare, final boolean isDirectory, final boolean save, final boolean append, final boolean autoplay, final boolean shuffle, final boolean background, final boolean playNext, final boolean unpin, final boolean isArtist)
@@ -1142,52 +1141,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		}
 	}
 
-	protected void checkLicenseAndTrialPeriod(Runnable onValid)
-	{
-		onValid.run();
-	}
-
-	private void showDonationDialog(int trialDaysLeft, final Runnable onValid)
-	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setIcon(android.R.drawable.ic_dialog_info);
-
-		if (trialDaysLeft == 0)
-		{
-			builder.setTitle(R.string.select_album_donate_dialog_0_trial_days_left);
-		}
-		else
-		{
-			builder.setTitle(getResources().getQuantityString(R.plurals.select_album_donate_dialog_n_trial_days_left, trialDaysLeft, trialDaysLeft));
-		}
-
-		builder.setMessage(R.string.select_album_donate_dialog_message);
-
-		builder.setPositiveButton(R.string.select_album_donate_dialog_now, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialogInterface, int i)
-			{
-				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATION_URL)));
-			}
-		});
-
-		builder.setNegativeButton(R.string.select_album_donate_dialog_later, new DialogInterface.OnClickListener()
-		{
-			@Override
-			public void onClick(DialogInterface dialogInterface, int i)
-			{
-				dialogInterface.dismiss();
-				if (onValid != null)
-				{
-					onValid.run();
-				}
-			}
-		});
-
-		builder.create().show();
-	}
-
 	protected void setActionBarDisplayHomeAsUp(boolean enabled)
 	{
 		ActionBar actionBar = getActionBar();
@@ -1195,16 +1148,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		if (actionBar != null)
 		{
 			actionBar.setDisplayHomeAsUpEnabled(enabled);
-		}
-	}
-
-	protected void setActionBarTitle(CharSequence title)
-	{
-		ActionBar actionBar = getActionBar();
-
-		if (actionBar != null)
-		{
-			actionBar.setTitle(title);
 		}
 	}
 
@@ -1216,19 +1159,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		{
 			actionBar.setTitle(id);
 		}
-	}
-
-	protected CharSequence getActionBarTitle()
-	{
-		ActionBar actionBar = getActionBar();
-		CharSequence title = null;
-
-		if (actionBar != null)
-		{
-			title = actionBar.getTitle();
-		}
-
-		return title;
 	}
 
 	protected void setActionBarSubtitle(CharSequence title)

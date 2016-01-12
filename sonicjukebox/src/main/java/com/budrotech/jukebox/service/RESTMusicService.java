@@ -187,6 +187,15 @@ public class RESTMusicService implements MusicService
 		}
 	}
 
+	public static String getContentType(HttpEntity entity)
+	{
+		if (entity == null || entity.getContentType() == null)
+		{
+			return null;
+		}
+		return entity.getContentType().getValue();
+	}
+
 	@Override
 	public void ping(Context context, ProgressListener progressListener) throws Exception
 	{
@@ -921,7 +930,7 @@ public class RESTMusicService implements MusicService
 					in = entity.getContent();
 
 					// If content type is XML, an error occurred. Get it.
-					String contentType = Util.getContentType(entity);
+					String contentType = getContentType(entity);
 					if (contentType != null && contentType.startsWith("text/xml"))
 					{
 						new ErrorParser(context).parse(new InputStreamReader(in, Constants.UTF_8));
@@ -985,7 +994,7 @@ public class RESTMusicService implements MusicService
 		HttpResponse response = getResponseForURL(context, url, params, parameterNames, parameterValues, headers, null, task);
 
 		// If content type is XML, an error occurred.  Get it.
-		String contentType = Util.getContentType(response.getEntity());
+		String contentType = getContentType(response.getEntity());
 		if (contentType != null && contentType.startsWith("text/xml"))
 		{
 			InputStream in = response.getEntity().getContent();
@@ -1693,7 +1702,7 @@ public class RESTMusicService implements MusicService
 					in = entity.getContent();
 
 					// If content type is XML, an error occurred. Get it.
-					String contentType = Util.getContentType(entity);
+					String contentType = getContentType(entity);
 					if (contentType != null && contentType.startsWith("text/xml"))
 					{
 						new ErrorParser(context).parse(new InputStreamReader(in, Constants.UTF_8));

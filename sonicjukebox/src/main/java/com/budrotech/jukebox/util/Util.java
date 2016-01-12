@@ -65,8 +65,6 @@ import com.budrotech.jukebox.service.DownloadFile;
 import com.budrotech.jukebox.service.DownloadService;
 import com.budrotech.jukebox.service.DownloadServiceImpl;
 
-import org.apache.http.HttpEntity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
@@ -400,15 +398,6 @@ public class Util extends DownloadActivity
 	public static SharedPreferences getPreferences(Context context)
 	{
 		return context.getSharedPreferences(Constants.PREFERENCES_FILE_NAME, 0);
-	}
-
-	public static String getContentType(HttpEntity entity)
-	{
-		if (entity == null || entity.getContentType() == null)
-		{
-			return null;
-		}
-		return entity.getContentType().getValue();
 	}
 
 	public static int getRemainingTrialDays(Context context)

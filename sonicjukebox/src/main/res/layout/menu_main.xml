@@ -103,14 +103,6 @@
             android:layout_height="wrap_content"
             android:drawableLeft="?attr/about"
             android:text="@string/menu.about"/>
-
-        <TextView
-            android:id="@+id/menu_exit"
-            style="@style/MenuDrawer.Widget.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="?attr/exit"
-            android:text="@string/menu.exit"/>
     </LinearLayout>
 
 </ScrollView>

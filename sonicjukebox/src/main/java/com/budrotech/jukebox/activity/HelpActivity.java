@@ -94,7 +94,6 @@ public final class HelpActivity extends ResultActivity implements OnClickListene
 		findViewById(R.id.menu_now_playing).setOnClickListener(this);
 		findViewById(R.id.menu_settings).setOnClickListener(this);
 		aboutMenuItem.setOnClickListener(this);
-		findViewById(R.id.menu_exit).setOnClickListener(this);
 
 		ActionBar actionBar = getActionBar();
 
@@ -291,12 +290,6 @@ public final class HelpActivity extends ResultActivity implements OnClickListene
 				break;
 			case R.id.menu_about:
 				Util.startActivityForResultWithoutTransition(this, HelpActivity.class);
-				break;
-			case R.id.menu_exit:
-				intent = new Intent(this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra(Constants.INTENT_EXTRA_NAME_EXIT, true);
-				Util.startActivityForResultWithoutTransition(this, intent);
 				break;
 		}
 

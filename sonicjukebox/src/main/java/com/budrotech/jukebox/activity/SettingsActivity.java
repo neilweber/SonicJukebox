@@ -141,7 +141,6 @@ public class SettingsActivity extends PreferenceResultActivity implements Shared
 		findViewById(R.id.menu_now_playing).setOnClickListener(this);
 		findViewById(R.id.menu_settings).setOnClickListener(this);
 		findViewById(R.id.menu_about).setOnClickListener(this);
-		findViewById(R.id.menu_exit).setOnClickListener(this);
 
 		ActionBar actionBar = getActionBar();
 
@@ -873,12 +872,6 @@ public class SettingsActivity extends PreferenceResultActivity implements Shared
 				break;
 			case R.id.menu_about:
 				startActivityForResultWithoutTransition(this, HelpActivity.class);
-				break;
-			case R.id.menu_exit:
-				intent = new Intent(this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra(Constants.INTENT_EXTRA_NAME_EXIT, true);
-				startActivityForResultWithoutTransition(this, intent);
 				break;
 		}
 

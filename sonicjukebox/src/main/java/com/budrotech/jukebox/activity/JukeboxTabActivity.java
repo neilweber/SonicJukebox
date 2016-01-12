@@ -157,7 +157,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		findViewById(R.id.menu_now_playing).setOnClickListener(this);
 		findViewById(R.id.menu_settings).setOnClickListener(this);
 		findViewById(R.id.menu_about).setOnClickListener(this);
-		findViewById(R.id.menu_exit).setOnClickListener(this);
 		setActionBarDisplayHomeAsUp(true);
 
 		TextView activeView = (TextView) findViewById(menuActiveViewId);
@@ -1371,12 +1370,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 				break;
 			case R.id.menu_about:
 				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, HelpActivity.class);
-				break;
-			case R.id.menu_exit:
-				intent = new Intent(JukeboxTabActivity.this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra(Constants.INTENT_EXTRA_NAME_EXIT, true);
-				Util.startActivityForResultWithoutTransition(JukeboxTabActivity.this, intent);
 				break;
 		}
 

@@ -6,8 +6,6 @@ import com.budrotech.jukebox.domain.MusicDirectory;
 import com.budrotech.jukebox.service.DownloadFile;
 import com.budrotech.jukebox.service.DownloadService;
 
-import org.apache.http.HttpRequest;
-import org.apache.http.message.BasicHttpRequest;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -120,9 +118,8 @@ public class StreamProxy implements Runnable
 			this.client = client;
 		}
 
-		private HttpRequest readRequest()
+		private String readRequest()
 		{
-			HttpRequest request;
 			InputStream is;
 			String firstLine;
 			try
@@ -148,14 +145,13 @@ public class StreamProxy implements Runnable
 			String uri = st.nextToken();
 			String realUri = uri.substring(1);
 			Log.i(TAG, realUri);
-			request = new BasicHttpRequest(method, realUri);
-			return request;
+			return realUri;
 		}
 
 		public boolean processRequest()
 		{
-			HttpRequest request = readRequest();
-			if (request == null)
+			String realUri = readRequest();
+			if (realUri == null)
 			{
 				return false;
 			}
@@ -165,7 +161,7 @@ public class StreamProxy implements Runnable
 
 			try
 			{
-				localPath = URLDecoder.decode(request.getRequestLine().getUri(), Constants.UTF_8);
+				localPath = URLDecoder.decode(realUri, Constants.UTF_8);
 			}
 			catch (UnsupportedEncodingException e)
 			{

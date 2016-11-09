@@ -37,7 +37,6 @@ import com.budrotech.jukebox.service.DownloadServiceImpl;
 import com.budrotech.jukebox.service.MusicService;
 import com.budrotech.jukebox.service.MusicServiceFactory;
 import com.budrotech.jukebox.util.Util;
-import com.budrotech.jukebox.util.VideoPlayerType;
 
 import java.io.File;
 
@@ -167,7 +166,7 @@ public class SongView extends UpdateView implements Checkable
 		String suffix = song.getSuffix();
 		String transcodedSuffix = song.getTranscodedSuffix();
 
-		fileFormat = transcodedSuffix == null || transcodedSuffix.equals(suffix) || (song.isVideo() && Util.getVideoPlayerType(this.context) != VideoPlayerType.FLASH) ? suffix : String.format("%s > %s", suffix, transcodedSuffix);
+		fileFormat = transcodedSuffix == null || transcodedSuffix.equals(suffix) ? suffix : String.format("%s > %s", suffix, transcodedSuffix);
 
 		String artistName = song.getArtist();
 

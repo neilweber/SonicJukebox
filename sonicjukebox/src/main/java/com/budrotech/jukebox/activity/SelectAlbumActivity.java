@@ -125,12 +125,7 @@ public class SelectAlbumActivity extends JukeboxTabActivity
 						intent.putExtra(Constants.INTENT_EXTRA_NAME_PARENT_ID, entry.getParent());
 						Util.startActivityForResultWithoutTransition(SelectAlbumActivity.this, intent);
 					}
-					else if (entry != null && entry.isVideo())
-					{
-						playVideo(entry);
-					}
-					else
-					{
+					else if (entry != null) {
 						enableButtons();
 					}
 				}

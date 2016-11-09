@@ -29,16 +29,15 @@ import com.budrotech.jukebox.util.CancellableTask;
 import com.budrotech.jukebox.util.FileUtil;
 import com.budrotech.jukebox.util.Util;
 
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+
+import okhttp3.Response;
 
 import static android.content.Context.POWER_SERVICE;
 import static android.os.PowerManager.ON_AFTER_RELEASE;
@@ -369,22 +368,17 @@ public class DownloadFile
 				if (compare)
 				{
 					// Attempt partial HTTP GET, appending to the file if it exists.
-					HttpResponse response = musicService.getDownloadInputStream(context, song, partialFile.length(), bitRate, DownloadTask.this);
-					Header contentLengthHeader = response.getFirstHeader("Content-Length");
+					Response response = musicService.getDownloadInputStream(context, song, partialFile.length(), bitRate, DownloadTask.this);
+					String contentLengthHeader = response.header("Content-Length");
 
 					if (contentLengthHeader != null)
 					{
-						String contentLengthString = contentLengthHeader.getValue();
-
-						if (contentLengthString != null)
-						{
-							Log.i(TAG, "Content Length: " + contentLengthString);
-							contentLength = Integer.parseInt(contentLengthString);
-						}
+							Log.i(TAG, "Content Length: " + contentLengthHeader);
+							contentLength = Integer.parseInt(contentLengthHeader);
 					}
 
-					in = response.getEntity().getContent();
-					boolean partial = response.getStatusLine().getStatusCode() == HttpStatus.SC_PARTIAL_CONTENT;
+					in = response.body().byteStream();
+					boolean partial = response.code() == HttpURLConnection.HTTP_PARTIAL;
 
 					if (partial)
 					{

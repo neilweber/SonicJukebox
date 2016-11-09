@@ -41,12 +41,12 @@ import com.budrotech.jukebox.util.ProgressListener;
 import com.budrotech.jukebox.util.TimeLimitedCache;
 import com.budrotech.jukebox.util.Util;
 
-import org.apache.http.HttpResponse;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Response;
 
 /**
  * @author Sindre Mehus
@@ -307,7 +307,7 @@ public class CachedMusicService implements MusicService
 	}
 
 	@Override
-	public HttpResponse getDownloadInputStream(Context context, MusicDirectory.Entry song, long offset, int maxBitrate, CancellableTask task) throws Exception
+	public Response getDownloadInputStream(Context context, MusicDirectory.Entry song, long offset, int maxBitrate, CancellableTask task) throws Exception
 	{
 		return musicService.getDownloadInputStream(context, song, offset, maxBitrate, task);
 	}
@@ -316,24 +316,6 @@ public class CachedMusicService implements MusicService
 	public Version getLocalVersion(Context context) throws Exception
 	{
 		return musicService.getLocalVersion(context);
-	}
-
-	@Override
-	public Version getLatestVersion(Context context, ProgressListener progressListener) throws Exception
-	{
-		return musicService.getLatestVersion(context, progressListener);
-	}
-
-	@Override
-	public String getVideoUrl(Context context, String id, boolean useFlash) throws Exception
-	{
-		return musicService.getVideoUrl(context, id, useFlash);
-	}
-
-	@Override
-	public String getVideoStreamUrl(int maxBitrate, Context context, String id)
-	{
-		return musicService.getVideoStreamUrl(maxBitrate, context, id);
 	}
 
 	@Override

@@ -1,200 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:a="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.budrotech.jukebox"
-          a:installLocation="auto"
-          a:versionCode="49"
-          a:versionName="1.0.0">
+          android:installLocation="auto"
+          android:versionCode="50"
+          android:versionName="1.1.0">
 
-    <uses-permission a:name="android.permission.INTERNET"/>
-    <uses-permission a:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission a:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission a:name="android.permission.WAKE_LOCK"/>
-    <uses-permission a:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission a:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission a:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission a:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission a:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
 
     <uses-sdk
-        a:minSdkVersion="14"
-        a:targetSdkVersion="19"/>
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19"/>
 
     <supports-screens
-        a:anyDensity="true"
-        a:largeScreens="true"
-        a:normalScreens="true"
-        a:smallScreens="true"
-        a:xlargeScreens="true"/>
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"/>
 
     <application
-        a:allowBackup="false"
-        a:icon="@drawable/ic_launcher"
-        a:theme="@style/SonicJukeboxTheme"
-        a:label="@string/common.appname">
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/SonicJukeboxTheme"
+        android:label="@string/common.appname">
         <activity
-            a:name="com.budrotech.jukebox.activity.MainActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:label="Sonic Jukebox"
-            a:launchMode="standard">
+            android:name="com.budrotech.jukebox.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Sonic Jukebox"
+            android:launchMode="standard">
             <intent-filter>
-                <action a:name="android.intent.action.MAIN"/>
-                <category a:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            a:name="com.budrotech.jukebox.activity.SelectArtistActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:launchMode="standard"/>
+            android:name="com.budrotech.jukebox.activity.SelectArtistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="standard"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.SelectAlbumActivity"
-            a:configChanges="orientation|keyboardHidden"/>
+            android:name="com.budrotech.jukebox.activity.SelectAlbumActivity"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.SearchActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:label="@string/search.label"
-            a:launchMode="singleTask"/>
+            android:name="com.budrotech.jukebox.activity.SearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/search.label"
+            android:launchMode="singleTask"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.SelectPlaylistActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:label="@string/playlist.label"
-            a:launchMode="standard"/>
+            android:name="com.budrotech.jukebox.activity.SelectPlaylistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/playlist.label"
+            android:launchMode="standard"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.BookmarkActivity"
-            a:configChanges="orientation|keyboardHidden"/>
+            android:name="com.budrotech.jukebox.activity.BookmarkActivity"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.ShareActivity"
-            a:configChanges="orientation|keyboardHidden"/>
+            android:name="com.budrotech.jukebox.activity.ShareActivity"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.ChatActivity"
-            a:configChanges="orientation|keyboardHidden"/>
+            android:name="com.budrotech.jukebox.activity.ChatActivity"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.DownloadActivity"
-            a:configChanges="keyboardHidden"
-            a:launchMode="singleTask"
-            a:exported="true" />
+            android:name="com.budrotech.jukebox.activity.DownloadActivity"
+            android:configChanges="keyboardHidden"
+            android:launchMode="singleTask"
+            android:exported="true" />
         <activity
-            a:name="com.budrotech.jukebox.activity.SettingsActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:launchMode="singleTask"/>
+            android:name="com.budrotech.jukebox.activity.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.HelpActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:launchMode="singleTask"/>
+            android:name="com.budrotech.jukebox.activity.HelpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.LyricsActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:launchMode="singleTask"/>
+            android:name="com.budrotech.jukebox.activity.LyricsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.EqualizerActivity"
-            a:configChanges="orientation|keyboardHidden"
-            a:label="@string/equalizer.label"
-            a:launchMode="singleTask"/>
+            android:name="com.budrotech.jukebox.activity.EqualizerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/equalizer.label"
+            android:launchMode="singleTask"/>
         <activity
-            a:name="com.budrotech.jukebox.activity.VoiceQueryReceiverActivity"
-            a:launchMode="singleTask">
+            android:name="com.budrotech.jukebox.activity.VoiceQueryReceiverActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action a:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <category a:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
-            a:name="com.budrotech.jukebox.activity.QueryReceiverActivity"
-            a:launchMode="singleTask">
+            android:name="com.budrotech.jukebox.activity.QueryReceiverActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action a:name="android.intent.action.SEARCH"/>
-                <category a:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEARCH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
 
             <meta-data
-                a:name="android.app.searchable"
-                a:resource="@xml/searchable"/>
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
         </activity>
 
         <service
-            a:name="com.budrotech.jukebox.service.DownloadServiceImpl"
-            a:label="Sonic Jukebox Download Service"
-            a:exported="false">
+            android:name="com.budrotech.jukebox.service.DownloadServiceImpl"
+            android:label="Sonic Jukebox Download Service"
+            android:exported="false">
             <intent-filter>
-                <action a:name="com.budrotech.jukebox.CMD_TOGGLEPAUSE"/>
-                <action a:name="com.budrotech.jukebox.CMD_PLAY"/>
-                <action a:name="com.budrotech.jukebox.CMD_PAUSE"/>
-                <action a:name="com.budrotech.jukebox.CMD_NEXT"/>
-                <action a:name="com.budrotech.jukebox.CMD_PREVIOUS"/>
-                <action a:name="com.budrotech.jukebox.CMD_STOP"/>
+                <action android:name="com.budrotech.jukebox.CMD_TOGGLEPAUSE"/>
+                <action android:name="com.budrotech.jukebox.CMD_PLAY"/>
+                <action android:name="com.budrotech.jukebox.CMD_PAUSE"/>
+                <action android:name="com.budrotech.jukebox.CMD_NEXT"/>
+                <action android:name="com.budrotech.jukebox.CMD_PREVIOUS"/>
+                <action android:name="com.budrotech.jukebox.CMD_STOP"/>
             </intent-filter>
         </service>
 
-        <receiver a:name="com.budrotech.jukebox.receiver.MediaButtonIntentReceiver">
-            <intent-filter a:priority="2147483647">
-                <action a:name="android.intent.action.MEDIA_BUTTON"/>
+        <receiver android:name="com.budrotech.jukebox.receiver.MediaButtonIntentReceiver">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
             </intent-filter>
         </receiver>
-        <receiver a:name="com.budrotech.jukebox.receiver.BluetoothIntentReceiver">
+        <receiver android:name="com.budrotech.jukebox.receiver.BluetoothIntentReceiver">
             <intent-filter>
-                <action a:name="android.bluetooth.device.action.ACL_CONNECTED"/>
-                <action a:name="android.bluetooth.device.action.ACL_DISCONNECTED"/>
-                <action a:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED"/>
-                <action a:name="android.bluetooth.a2dp.action.SINK_STATE_CHANGED"/>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED"/>
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED"/>
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED"/>
+                <action android:name="android.bluetooth.a2dp.action.SINK_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
         <receiver
-            a:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X1"
-            a:label="Sonic Jukebox (4x1)">
+            android:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X1"
+            android:label="Sonic Jukebox (4x1)">
             <intent-filter>
-                <action a:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
-                a:name="android.appwidget.provider"
-                a:resource="@xml/appwidget_info_4x1"/>
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info_4x1"/>
         </receiver>
         <receiver
-            a:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X2"
-            a:label="Sonic Jukebox (4x2)">
+            android:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X2"
+            android:label="Sonic Jukebox (4x2)">
             <intent-filter>
-                <action a:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
-                a:name="android.appwidget.provider"
-                a:resource="@xml/appwidget_info_4x2"/>
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info_4x2"/>
         </receiver>
         <receiver
-            a:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X3"
-            a:label="Sonic Jukebox (4x3)">
+            android:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X3"
+            android:label="Sonic Jukebox (4x3)">
             <intent-filter>
-                <action a:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
-                a:name="android.appwidget.provider"
-                a:resource="@xml/appwidget_info_4x3"/>
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info_4x3"/>
         </receiver>
         <receiver
-            a:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X4"
-            a:label="Sonic Jukebox (4x4)">
+            android:name="com.budrotech.jukebox.provider.SonicJukeboxAppWidgetProvider4X4"
+            android:label="Sonic Jukebox (4x4)">
             <intent-filter>
-                <action a:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
-                a:name="android.appwidget.provider"
-                a:resource="@xml/appwidget_info_4x4"/>
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_info_4x4"/>
         </receiver>
 
         <provider
-            a:name="com.budrotech.jukebox.provider.SearchSuggestionProvider"
-            a:authorities="com.budrotech.jukebox.provider.SearchSuggestionProvider"/>
+            android:name="com.budrotech.jukebox.provider.SearchSuggestionProvider"
+            android:authorities="com.budrotech.jukebox.provider.SearchSuggestionProvider"/>
 
         <meta-data
-            a:name="android.app.default_searchable"
-            a:value="com.budrotech.jukebox.activity.QueryReceiverActivity"/>
+            android:name="android.app.default_searchable"
+            android:value="com.budrotech.jukebox.activity.QueryReceiverActivity"/>
 
         <receiver
-            a:name="com.budrotech.jukebox.receiver.A2dpIntentReceiver"
-            a:exported="false">
+            android:name="com.budrotech.jukebox.receiver.A2dpIntentReceiver"
+            android:exported="false">
             <intent-filter>
-                <action a:name="com.android.music.playstatusrequest"/>
+                <action android:name="com.android.music.playstatusrequest"/>
             </intent-filter>
         </receiver>
     </application>

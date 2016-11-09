@@ -38,9 +38,9 @@ import com.budrotech.jukebox.domain.Version;
 import com.budrotech.jukebox.util.CancellableTask;
 import com.budrotech.jukebox.util.ProgressListener;
 
-import org.apache.http.HttpResponse;
-
 import java.util.List;
+
+import okhttp3.Response;
 
 /**
  * @author Sindre Mehus
@@ -104,15 +104,9 @@ public interface MusicService
 
 	Bitmap getCoverArt(Context context, MusicDirectory.Entry entry, int size, boolean saveToFile, boolean highQuality, ProgressListener progressListener) throws Exception;
 
-	HttpResponse getDownloadInputStream(Context context, MusicDirectory.Entry song, long offset, int maxBitrate, CancellableTask task) throws Exception;
+	Response getDownloadInputStream(Context context, MusicDirectory.Entry song, long offset, int maxBitrate, CancellableTask task) throws Exception;
 
 	Version getLocalVersion(Context context) throws Exception;
-
-	Version getLatestVersion(Context context, ProgressListener progressListener) throws Exception;
-
-	String getVideoUrl(Context context, String id, boolean useFlash) throws Exception;
-
-	String getVideoStreamUrl(int Bitrate, Context context, String id);
 
 	JukeboxStatus updateJukeboxPlaylist(List<String> ids, Context context, ProgressListener progressListener) throws Exception;
 

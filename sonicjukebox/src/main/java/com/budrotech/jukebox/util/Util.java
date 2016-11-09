@@ -1474,12 +1474,6 @@ public class Util extends DownloadActivity
 		else return minutes > 0 ? String.format("%d:%02d", minutes, seconds) : String.format("0:%02d", seconds);
 	}
 
-	public static VideoPlayerType getVideoPlayerType(Context context)
-	{
-		SharedPreferences preferences = getPreferences(context);
-		return VideoPlayerType.forKey(preferences.getString(Constants.PREFERENCES_KEY_VIDEO_PLAYER, VideoPlayerType.MX.getKey()));
-	}
-
 	public static boolean isPackageInstalled(Context context, String packageName)
 	{
 		PackageManager pm = context.getPackageManager();

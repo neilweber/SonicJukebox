@@ -698,18 +698,6 @@ public class OfflineMusicService extends RESTMusicService
 	}
 
 	@Override
-	public String getVideoUrl(Context context, String id, boolean useFlash)
-	{
-		return null;
-	}
-
-	@Override
-	public String getVideoStreamUrl(int maxBitrate, Context context, String id)
-	{
-		return null;
-	}
-
-	@Override
 	public JukeboxStatus updateJukeboxPlaylist(List<String> ids, Context context, ProgressListener progressListener) throws Exception
 	{
 		throw new OfflineException("Jukebox not available in offline mode");

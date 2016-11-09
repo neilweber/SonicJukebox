@@ -133,14 +133,6 @@
             a:summary="@string/settings.send_bluetooth_album_art_summary"
             a:title="@string/settings.send_bluetooth_album_art"/>
     </PreferenceCategory>
-    <PreferenceCategory a:title="@string/settings.video_title">
-        <ListPreference
-            a:defaultValue="default"
-            a:entries="@array/videoPlayerNames"
-            a:entryValues="@array/videoPlayerValues"
-            a:key="videoPlayer"
-            a:title="@string/settings.video_player"/>
-    </PreferenceCategory>
     <PreferenceCategory a:title="@string/settings.sharing_title">
         <EditTextPreference
             a:key="sharingDefaultDescription"

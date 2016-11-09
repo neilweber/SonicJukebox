@@ -524,7 +524,6 @@ public class SearchActivity extends JukeboxTabActivity
 
 	private void onVideoSelected(MusicDirectory.Entry entry)
 	{
-		playVideo(entry);
 	}
 
 	private void autoplay()

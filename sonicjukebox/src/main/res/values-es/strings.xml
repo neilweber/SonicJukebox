@@ -91,7 +91,6 @@
     <string name="main.songs_random">Aleatorio</string>
     <string name="main.songs_starred">Me gusta</string>
     <string name="main.songs_title">Canciones</string>
-    <string name="main.videos">Vídeos</string>
     <string name="main.welcome_text">Te damos la bienvenida a Sonic Jukebox! La aplicación no está configurada actualmente. Despues de que hayas configurado tu servidor personal (disponible desde <b>subsonic.org</b>), por favor haz click en <i>Añadir servidor</i> en <b>Configuración</b> para conectarte con él.</string>
     <string name="main.welcome_title">¡Saludos!</string>
     <string name="menu.about">Acerca de</string>
@@ -301,8 +300,6 @@
     <string name="settings.use_folder_for_album_artist_summary">Se asume que la carpeta en el nivel mal alto es el nombre del artista del álbum</string>
     <string name="settings.use_id3">Navegar usando las etiquetas ID3</string>
     <string name="settings.use_id3_summary">Usar el método de etiquetas ID3 en lugar del método basado en el sistema de ficheros</string>
-    <string name="settings.video_title">Vídeo</string>
-    <string name="settings.video_player">Reproductor de vídeo</string>
     <string name="settings.view_refresh">Refresco de la vista</string>
     <string name="settings.view_refresh_500">.5 segundos</string>
     <string name="settings.view_refresh_1000">1 segundo</string>
@@ -324,8 +321,6 @@
     <string name="util.bytes_format.megabyte">0.00 MB</string>
     <string name="util.no_time">-:--</string>
     <string name="util.zero_time">0:00</string>
-    <string name="video.get_mx_player_text">El MX Player no esta instalado. Descárgalo grátis de la Play Store, o cambia la configuración de vídeo.</string>
-    <string name="video.get_mx_player_button">Obtener MX Player</string>
     <string name="widget.initial_text">Toca para seleccionar música</string>
     <string name="widget.sdcard_busy">Tarjeta SD no disponible</string>
     <string name="widget.sdcard_missing">No hay tarjeta SD</string>
@@ -361,9 +356,6 @@
     <string name="settings.share_greeting_default">Saludo por defecto para los compartidos</string>
     <string name="share_default_greeting">Echa un vistazo a esta música que te comparto desde %s</string>
     <string name="share_via">Compartir canciones vía</string>
-    <string name="settings.video_mx_player">MX Player</string>
-    <string name="settings.video_default">Por defecto</string>
-    <string name="settings.video_flash">Flash</string>
     <string name="menu.share">Compartir</string>
     <string name="select_album_all_songs">Todas las canciones por %s</string>
     <string name="settings.show_all_songs_by_artist">Mostrar todas las canciones por artista</string>

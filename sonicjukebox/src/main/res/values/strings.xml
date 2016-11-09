@@ -91,7 +91,6 @@
     <string name="main.songs_random">Random</string>
     <string name="main.songs_starred">Starred</string>
     <string name="main.songs_title">Songs</string>
-    <string name="main.videos">Videos</string>
     <string name="main.welcome_text">Welcome to Sonic Jukebox! The app is currently not configured. After you\'ve set up your personal server (available from <b>subsonic.org</b>), please click <i>Add Server</i> in <b>Settings</b> to connect to it.</string>
     <string name="main.welcome_title">Welcome!</string>
     <string name="menu.about">About</string>
@@ -301,8 +300,6 @@
     <string name="settings.use_folder_for_album_artist_summary">Assume top-level folder is the name of the album artist</string>
     <string name="settings.use_id3">Browse Using ID3 Tags</string>
     <string name="settings.use_id3_summary">Use ID3 tag methods instead of file system based methods</string>
-    <string name="settings.video_title">Video</string>
-    <string name="settings.video_player">Video player</string>
     <string name="settings.view_refresh">View Refresh</string>
     <string name="settings.view_refresh_500">.5 seconds</string>
     <string name="settings.view_refresh_1000">1 second</string>
@@ -324,8 +321,6 @@
     <string name="util.bytes_format.megabyte">0.00 MB</string>
     <string name="util.no_time">-:--</string>
     <string name="util.zero_time">0:00</string>
-    <string name="video.get_mx_player_text">MX Player is not installed. Get it for free on Play Store, or change video settings.</string>
-    <string name="video.get_mx_player_button">Get MX Player</string>
     <string name="widget.initial_text">Touch to select music</string>
     <string name="widget.sdcard_busy">SD card unavailable</string>
     <string name="widget.sdcard_missing">No SD card</string>
@@ -361,9 +356,6 @@
     <string name="settings.share_greeting_default">Default Share Greeting</string>
     <string name="share_default_greeting">Check out this music I shared from %s</string>
     <string name="share_via">Share songs via</string>
-    <string name="settings.video_mx_player">MX Player</string>
-    <string name="settings.video_default">Default</string>
-    <string name="settings.video_flash">Flash</string>
     <string name="menu.share">Share</string>
     <string name="select_album_all_songs">All Songs by %s</string>
     <string name="settings.show_all_songs_by_artist">Show All Songs By Artist</string>

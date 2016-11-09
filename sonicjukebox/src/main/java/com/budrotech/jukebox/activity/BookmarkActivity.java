@@ -93,14 +93,7 @@ public class BookmarkActivity extends JukeboxTabActivity
 
 					if (entry != null)
 					{
-						if (entry.isVideo())
-						{
-							playVideo(entry);
-						}
-						else
-						{
 							enableButtons();
-						}
 					}
 				}
 			}

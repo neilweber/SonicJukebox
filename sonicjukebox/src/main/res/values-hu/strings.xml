@@ -91,7 +91,6 @@
     <string name="main.songs_random">Véletlenszerű</string>
     <string name="main.songs_starred">Csillaggal megjelölt</string>
     <string name="main.songs_title">Dalok</string>
-    <string name="main.videos">Videók</string>
     <string name="main.welcome_text">Üdvözli az Sonic Jukebox! Az alkalmazás még nincs beállítva. Miután konfigurálta saját kiszolgálóját (elérhető: <b>subsonic.org</b>), húzza balról jobbra az oldalsávot, lépjen be a <b>Beállítások</b> menüpontba, és adja meg csatlakozási adatokat!</string>
     <string name="main.welcome_title">Üdvözlet!</string>
     <string name="menu.about">Névjegy</string>
@@ -301,8 +300,6 @@
     <string name="settings.use_folder_for_album_artist_summary">Feltételezi, hogy a legfelső szintű mappa az előadó neve.</string>
     <string name="settings.use_id3">Böngészés ID3 Tag használatával</string>
     <string name="settings.use_id3_summary">ID3 Tag módszer használata a fájlredszer alapú mód helyett.</string>
-    <string name="settings.video_title">Videó</string>
-    <string name="settings.video_player">Videólejátszó</string>
     <string name="settings.view_refresh">Nézet frissítési gyakorisága</string>
     <string name="settings.view_refresh_500">.5 másodperc</string>
     <string name="settings.view_refresh_1000">1 másodperc</string>
@@ -324,8 +321,6 @@
     <string name="util.bytes_format.megabyte">0.00 MB</string>
     <string name="util.no_time">-:--</string>
     <string name="util.zero_time">0:00</string>
-    <string name="video.get_mx_player_text">Az MX Player nincs telepítve. Töltse le díjmentesen a Play Áruházból, vagy módosítsa a videó beállításait!</string>
-    <string name="video.get_mx_player_button">MX Player letöltése</string>
     <string name="widget.initial_text">Érintse meg a zene kiválasztásához</string>
     <string name="widget.sdcard_busy">Az SD kártya nem elérhető!</string>
     <string name="widget.sdcard_missing">Nincs SD kártya!</string>
@@ -361,9 +356,6 @@
     <string name="settings.share_greeting_default">Alapértelmezett megosztási üzenet</string>
     <string name="share_default_greeting">Hallgasd meg ezt a zenét, megosztottam innen: %s</string>
     <string name="share_via">Dalok megosztása ezzel</string>
-    <string name="settings.video_mx_player">MX Player</string>
-    <string name="settings.video_default">Alapértelmezett</string>
-    <string name="settings.video_flash">Flash</string>
     <string name="menu.share">Megosztás</string>
     <string name="select_album_all_songs">%s minden dala</string>
     <string name="settings.show_all_songs_by_artist">Az előadó összes dalának megjelenítése</string>

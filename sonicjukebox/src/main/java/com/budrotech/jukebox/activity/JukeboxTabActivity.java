@@ -72,7 +72,6 @@ import com.budrotech.jukebox.util.TabActivityBackgroundTask;
 import com.budrotech.jukebox.util.TimeSpan;
 import com.budrotech.jukebox.util.TimeSpanPicker;
 import com.budrotech.jukebox.util.Util;
-import com.budrotech.jukebox.util.VideoPlayerType;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
@@ -1119,26 +1118,6 @@ public class JukeboxTabActivity extends ResultActivity implements OnClickListene
 		};
 
 		task.execute();
-	}
-
-	protected void playVideo(Entry entry)
-	{
-		if (!Util.isNetworkConnected(this))
-		{
-			Util.toast(this, R.string.select_album_no_network);
-			return;
-		}
-
-		VideoPlayerType player = Util.getVideoPlayerType(this);
-
-		try
-		{
-			player.playVideo(this, entry);
-		}
-		catch (Exception e)
-		{
-			Util.toast(this, e.getMessage(), false);
-		}
 	}
 
 	protected void setActionBarDisplayHomeAsUp(boolean enabled)

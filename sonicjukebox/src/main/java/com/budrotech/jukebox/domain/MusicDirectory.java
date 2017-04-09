@@ -136,6 +136,7 @@ public class MusicDirectory
 		private Date created;
 		private int closeness;
 		private int bookmarkPosition;
+		private Long playCount;
 
 		public Integer getDiscNumber()
 		{
@@ -434,6 +435,16 @@ public class MusicDirectory
 		public void setBookmarkPosition(int bookmarkPosition)
 		{
 			this.bookmarkPosition = bookmarkPosition;
+		}
+
+		public Long getPlayCount()
+		{
+			return playCount;
+		}
+
+		public void setPlayCount(Long playCount)
+		{
+			this.playCount = playCount;
 		}
 
 		@Override

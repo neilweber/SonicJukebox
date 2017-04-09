@@ -47,6 +47,7 @@ public class MusicDirectoryEntryParser extends AbstractParser
 		entry.setYear(getInteger("year"));
 		entry.setCreated(get("created"));
 		entry.setStarred(getValueExists(Constants.STARRED));
+		entry.setPlayCount(getLong("playCount"));
 
 		if (!entry.isDirectory())
 		{

@@ -76,6 +76,7 @@
     <string name="main.albums_alphaByArtist">Előadónév szerint</string>
     <string name="main.albums_alphaByName">Albumcím szerint</string>
     <string name="main.albums_frequent">Legtöbbször lejátszott</string>
+    <string name="main.albums_infrequent">Legalább játsszák</string>
     <string name="main.albums_highest">Legjobbra értékelt</string>
     <string name="main.albums_newest">Utoljára hozzáadott</string>
     <string name="main.albums_random">Véletlenszerű</string>

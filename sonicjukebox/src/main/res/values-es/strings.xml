@@ -76,6 +76,7 @@
     <string name="main.albums_alphaByArtist">Por artista</string>
     <string name="main.albums_alphaByName">Por nombre</string>
     <string name="main.albums_frequent">Mas reproducidas</string>
+    <string name="main.albums_infrequent">Menos jugado</string>
     <string name="main.albums_highest">Mejor puntuadas</string>
     <string name="main.albums_newest">Añadidas recientemente</string>
     <string name="main.albums_random">Aleatorio</string>

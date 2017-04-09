@@ -76,6 +76,7 @@
     <string name="main.albums_alphaByArtist">By Artist</string>
     <string name="main.albums_alphaByName">By Name</string>
     <string name="main.albums_frequent">Most Played</string>
+    <string name="main.albums_infrequent">Least Played</string>
     <string name="main.albums_highest">Top Rated</string>
     <string name="main.albums_newest">Recently Added</string>
     <string name="main.albums_random">Random</string>

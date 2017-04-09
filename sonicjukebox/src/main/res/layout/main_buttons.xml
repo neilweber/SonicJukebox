@@ -77,7 +77,12 @@
 		a:layout_width="fill_parent" a:layout_height="wrap_content"
 		a:textAppearance="?android:attr/textAppearanceMedium" a:gravity="center_vertical"
 		a:paddingLeft="6dip" a:paddingRight="6dip" a:minHeight="40dip" />
-	
+
+	<TextView a:id="@+id/main_albums_infrequent" a:text="@string/main.albums_infrequent"
+		a:layout_width="fill_parent" a:layout_height="wrap_content"
+		a:textAppearance="?android:attr/textAppearanceMedium" a:gravity="center_vertical"
+		a:paddingLeft="6dip" a:paddingRight="6dip" a:minHeight="40dip" />
+
 	<TextView a:id="@+id/main_albums_starred" a:layout_width="fill_parent"
 		a:layout_height="wrap_content" a:gravity="center_vertical"
 		a:minHeight="40dip" a:paddingLeft="6dip" a:paddingRight="6dip"

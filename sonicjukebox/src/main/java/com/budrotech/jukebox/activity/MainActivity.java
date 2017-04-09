@@ -107,6 +107,7 @@ public class MainActivity extends JukeboxTabActivity
 		final View albumsTitle = buttons.findViewById(R.id.main_albums);
 		final View albumsNewestButton = buttons.findViewById(R.id.main_albums_newest);
 		final View albumsRandomButton = buttons.findViewById(R.id.main_albums_random);
+		final View albumsInfrequentButton = buttons.findViewById(R.id.main_albums_infrequent);
 		final View albumsHighestButton = buttons.findViewById(R.id.main_albums_highest);
 		final View albumsStarredButton = buttons.findViewById(R.id.main_albums_starred);
 		final View albumsAlphaByArtistButton = buttons.findViewById(R.id.main_albums_alphaByArtist);
@@ -149,12 +150,12 @@ public class MainActivity extends JukeboxTabActivity
 			if (Util.getShouldUseId3Tags(MainActivity.this))
 			{
 				shouldUseId3 = true;
-				adapter.addViews(asList(albumsRandomButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton), true);
+				adapter.addViews(asList(albumsRandomButton, albumsInfrequentButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton), true);
 			}
 			else
 			{
 				shouldUseId3 = false;
-				adapter.addViews(asList(albumsRandomButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton, albumsHighestButton), true);
+				adapter.addViews(asList(albumsRandomButton, albumsInfrequentButton, albumsStarredButton, albumsAlphaByArtistButton, albumsNewestButton, albumsHighestButton), true);
 			}
 		}
 
@@ -177,6 +178,10 @@ public class MainActivity extends JukeboxTabActivity
 				else if (view == albumsRandomButton)
 				{
 					showAlbumList("random", R.string.main_albums_random);
+				}
+				else if (view == albumsInfrequentButton)
+				{
+					showAlbumList("infrequent", R.string.main_albums_infrequent);
 				}
 				else if (view == albumsHighestButton)
 				{

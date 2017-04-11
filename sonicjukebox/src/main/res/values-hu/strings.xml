@@ -242,9 +242,9 @@
     <string name="settings.preload">Dalok előolvasása</string>
     <string name="settings.preload_1">1 dal</string>
     <string name="settings.preload_10">10 dal</string>
-    <string name="settings.preload_2">2 dal</string>
-    <string name="settings.preload_3">3 dal</string>
-    <string name="settings.preload_5">5 dal</string>
+    <string name="settings.preload_25">25 dal</string>
+    <string name="settings.preload_50">50 dal</string>
+    <string name="settings.preload_100">100 dal</string>
     <string name="settings.preload_unlimited">Korlátlan</string>
     <string name="settings.screen_lit_summary">Képernyő ébrentartása a letöltés alatt, a magasabb letöltési sebesség érdekében.</string>
     <string name="settings.screen_lit_title">Képernyő ébrentartása</string>

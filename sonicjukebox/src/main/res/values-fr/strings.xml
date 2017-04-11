@@ -242,9 +242,9 @@
     <string name="settings.preload">Titres à pré-charger</string>
     <string name="settings.preload_1">1 morceau</string>
     <string name="settings.preload_10">10 morceaux</string>
-    <string name="settings.preload_2">2 morceaux</string>
-    <string name="settings.preload_3">3 morceaux</string>
-    <string name="settings.preload_5">5 morceaux</string>
+    <string name="settings.preload_25">25 morceaux</string>
+    <string name="settings.preload_50">50 morceaux</string>
+    <string name="settings.preload_100">100 morceaux</string>
     <string name="settings.preload_unlimited">Illimité</string>
     <string name="settings.screen_lit_summary">Garder l\'écran allumé pendant le téléchargement permet d\'améliorer la vitesse de téléchargement.</string>
     <string name="settings.screen_lit_title">Garder écran allumé</string>

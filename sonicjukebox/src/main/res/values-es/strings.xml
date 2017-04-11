@@ -242,9 +242,9 @@
     <string name="settings.preload">Canciones a precargar</string>
     <string name="settings.preload_1">1 canción</string>
     <string name="settings.preload_10">10 canciónes</string>
-    <string name="settings.preload_2">2 canciónes</string>
-    <string name="settings.preload_3">3 canciónes</string>
-    <string name="settings.preload_5">5 canciónes</string>
+    <string name="settings.preload_25">25 canciónes</string>
+    <string name="settings.preload_50">50 canciónes</string>
+    <string name="settings.preload_100">100 canciónes</string>
     <string name="settings.preload_unlimited">Ilimitado</string>
     <string name="settings.screen_lit_summary">Mantener la pantalla encendida mientras descarga mejora la velocidad de la misma.</string>
     <string name="settings.screen_lit_title">Mantener la pantalla encendida</string>
